@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitaal Maatwerk & AI | ArkAstro</title>
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="bg-marine text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <!-- Custom SVG Logo: Ster met pijl in negatieve ruimte -->
+                <svg class="w-10 h-10" viewBox="0 0 100 100">
+                    <polygon points="50,5 61,39 95,39 67,60 77,94 50,73 23,94 33,60 5,39 39,39" fill="#D4AF37" />
+                    <path d="M50 30 L40 50 L45 50 L45 65 L55 65 L55 50 L60 50 Z" fill="#001F3F" />
+                </svg>
+                <span class="text-2xl font-bold tracking-tighter">ARKASTRO</span>
+            </div>
+            <div class="hidden md:flex space-x-8 font-semibold text-sm uppercase tracking-widest">
+                <a href="it-solutions.html" class="nav-link">IT Solutions</a>
+                <a href="custom-lab.html" class="nav-link">Custom Lab</a>
+                <a href="boeken.html" class="nav-link">De Winkel</a>
+                <a href="index.html#over-ons" class="nav-link">Over Ons</a>
+            </div>
+            <button class="md:hidden text-white" id="mobileMenuBtn">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- IT Solutions Hero -->
+    <header class="hero-gradient-it min-h-[70vh] flex items-center text-white text-center px-6 relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none" style="background:
+            radial-gradient(1200px 600px at 20% 20%, rgba(212, 175, 55, 0.18), transparent 60%),
+            radial-gradient(900px 500px at 80% 70%, rgba(255, 255, 255, 0.10), transparent 55%),
+            linear-gradient(rgba(0, 31, 63, 0.35), rgba(0, 31, 63, 0.35));"></div>
+        <div class="container mx-auto relative z-10">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 pb-1 gold-gradient leading-[1.1]">Digitaal Maatwerk &amp; AI</h1>
+            <p class="text-lg md:text-2xl max-w-3xl mx-auto text-gray-200 leading-relaxed">
+                Wij bouwen geen standaard websites, wij creëren slimme digitale ecosystemen die voor u werken.
+            </p>
+        </div>
+    </header>
+
+    <!-- Intro -->
+    <section class="py-24 container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-6 underline decoration-gold decoration-4 underline-offset-8">Onze aanpak</h2>
+            <p class="text-gray-600 text-lg leading-relaxed">
+                Technologie hoeft niet ingewikkeld te voelen. Wij vertalen complexe IT en AI naar oplossingen die wél werken in de praktijk:
+                sneller, veiliger en met minder repetitief werk. Van een performant platform tot automatisaties die fouten verminderen en tijd vrijmaken
+                voor wat echt telt in uw zaak.
+            </p>
+        </div>
+    </section>
+
+    <!-- Core Services -->
+    <section class="pb-24 container mx-auto px-6">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-3 gap-10">
+            <!-- A -->
+            <div class="card p-10 rounded-3xl border-t-8 border-gold">
+                <div class="mb-8">
+                    <svg class="w-14 h-14 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l-3 3 3 3M16 9l3 3-3 3M13 7l-2 10"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Web Development &amp; Applicaties</h3>
+                <p class="text-gray-600 mb-8">
+                    Custom websites, web apps en platformen gebouwd voor performance, stabiliteit en schaalbaarheid — afgestemd op uw processen.
+                </p>
+                <ul class="space-y-3 text-sm text-gray-700 font-medium">
+                    <li class="flex items-center">
+                        <span class="text-gold mr-3">✦</span>
+                        <div class="leading-tight">
+                            <div class="font-bold text-marine">Maatwerk platforms</div>
+                            <div class="text-gray-500 font-normal">Van simpele site tot complexe webapp.</div>
+                        </div>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-gold mr-3">✦</span>
+                        <div class="leading-tight">
+                            <div class="font-bold text-marine">Performance first</div>
+                            <div class="text-gray-500 font-normal">Snel laden, helder UX, betrouwbaar.</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- B -->
+            <div class="card p-10 rounded-3xl border-t-8 border-gold">
+                <div class="mb-8">
+                    <svg class="w-14 h-14 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 3a2.25 2.25 0 00-2.25 2.25V7.5H6.75A2.25 2.25 0 004.5 9.75v4.5A2.25 2.25 0 006.75 16.5H7.5v2.25A2.25 2.25 0 009.75 21h4.5A2.25 2.25 0 0016.5 18.75V16.5h.75A2.25 2.25 0 0019.5 14.25v-4.5A2.25 2.25 0 0017.25 7.5H16.5V5.25A2.25 2.25 0 0014.25 3h-4.5z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6M12 9v6"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Slimme Automatisatie &amp; AI</h3>
+                <p class="text-gray-600 mb-8">
+                    We automatiseren repetitieve taken en integreren AI waar het echt waarde oplevert: minder fouten, meer snelheid, betere inzichten.
+                </p>
+                <ul class="space-y-3 text-sm text-gray-700 font-medium">
+                    <li class="flex items-center">
+                        <span class="text-gold mr-3">✦</span>
+                        <div class="leading-tight">
+                            <div class="font-bold text-marine">Workflows & integraties</div>
+                            <div class="text-gray-500 font-normal">Koppelingen tussen tools en systemen.</div>
+                        </div>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-gold mr-3">✦</span>
+                        <div class="leading-tight">
+                            <div class="font-bold text-marine">AI in de praktijk</div>
+                            <div class="text-gray-500 font-normal">Slimme assistentie, classificatie, samenvattingen.</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- C -->
+            <div class="card p-10 rounded-3xl border-t-8 border-gold">
+                <div class="mb-8">
+                    <svg class="w-14 h-14 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3l7 4v6c0 5-3 8-7 8s-7-3-7-8V7l7-4z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.5 12l1.75 1.75L14.5 10.5"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Netwerk &amp; Security</h3>
+                <p class="text-gray-600 mb-8">
+                    Betrouwbare infrastructuur, netwerkbeheer en camerabeveiliging — uitgewerkt en uitgevoerd samen met onze gespecialiseerde partners.
+                </p>
+                <ul class="space-y-3 text-sm text-gray-700 font-medium">
+                    <li class="flex items-center">
+                        <span class="text-gold mr-3">✦</span>
+                        <div class="leading-tight">
+                            <div class="font-bold text-marine">Netwerkbeheer</div>
+                            <div class="text-gray-500 font-normal">Stabiele wifi, switching en monitoring.</div>
+                        </div>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-gold mr-3">✦</span>
+                        <div class="leading-tight">
+                            <div class="font-bold text-marine">Camerabeveiliging</div>
+                            <div class="text-gray-500 font-normal">Plaatsing en configuratie met partners.</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-marine text-white py-24">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 gold-gradient">Klaar om efficiënter te werken?</h2>
+                <p class="text-gray-300 mb-10 leading-relaxed">
+                    Vertel ons kort wat u wil bouwen of verbeteren. We denken mee en vertalen uw vraag naar een heldere, haalbare aanpak.
+                </p>
+                <a href="mailto:info@arkastro.be?subject=Project%20bespreken%20-%20Digitaal%20Maatwerk%20%26%20AI" class="bg-gold hover:bg-yellow-600 text-marine font-bold py-4 px-10 rounded-full transition duration-300 shadow-xl inline-flex items-center justify-center">
+                    Bespreek uw project met ons
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-marine text-white pt-20 pb-10 border-t border-white/10">
+        <div class="container mx-auto px-6 grid md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-1">
+                <div class="flex items-center space-x-2 mb-6">
+                    <svg class="w-8 h-8" viewBox="0 0 100 100"><polygon points="50,5 61,39 95,39 67,60 77,94 50,73 23,94 33,60 5,39 39,39" fill="#D4AF37" /><path d="M50 30 L40 50 L45 50 L45 65 L55 65 L55 50 L60 50 Z" fill="#001F3F" /></svg>
+                    <h4 class="text-xl font-bold gold-gradient">ARKASTRO</h4>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed">Waar traditie de toekomst ontmoet. Jouw partner in IT, creativiteit en kennis.</p>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6 text-gold uppercase text-xs tracking-widest">Diensten</h5>
+                <ul class="text-sm text-gray-400 space-y-4">
+                    <li><a href="it-solutions.html" class="hover:text-gold transition-colors">IT Managed Services</a></li>
+                    <li><a href="custom-lab.html" class="hover:text-gold transition-colors">3D & Laser Lab</a></li>
+                    <li><a href="boeken.html" class="hover:text-gold transition-colors">Boeken & Spellen</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6 text-gold uppercase text-xs tracking-widest">Connect</h5>
+                <p class="text-sm text-gray-400 mb-2">www.arkastro.be</p>
+                <p class="text-sm text-gray-400">Instagram: <a href="#" class="hover:text-gold">@arkastro_bv</a></p>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6 text-gold uppercase text-xs tracking-widest">Update</h5>
+                <p class="text-xs text-gray-500 mb-4">Blijf op de hoogte van lanceringen en nieuwe boeken.</p>
+                <div class="flex">
+                    <input type="email" placeholder="E-mail" class="bg-white/10 border-none px-4 py-3 rounded-l-xl w-full text-sm outline-none focus:ring-1 focus:ring-gold">
+                    <button class="bg-gold text-marine px-4 py-3 rounded-r-xl font-bold text-sm hover:bg-yellow-600 transition-colors">OK</button>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 pt-10 border-t border-white/5 text-center text-[10px] text-gray-600 uppercase tracking-[0.3em]">
+            &copy; 2024 ArkAstro BV &bull; Ondernemen met passie &bull; Made in Belgium
+        </div>
+    </footer>
+
+    <script src="./main.js" defer></script>
+</body>
+</html>

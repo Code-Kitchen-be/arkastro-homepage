@@ -24,9 +24,9 @@
                 <span class="text-2xl font-bold tracking-tighter">ARKASTRO</span>
             </div>
             <div class="hidden md:flex space-x-8 font-semibold text-sm uppercase tracking-widest">
-                <a href="#it-solutions" class="nav-link">IT Solutions</a>
-                <a href="#custom-lab" class="nav-link">Custom Lab</a>
-                <a href="#winkel" class="nav-link">De Winkel</a>
+                <a href="it-solutions.html" class="nav-link">IT Solutions</a>
+                <a href="custom-lab.html" class="nav-link">Custom Lab</a>
+                <a href="boeken.html" class="nav-link">De Winkel</a>
                 <a href="#over-ons" class="nav-link">Over Ons</a>
             </div>
             <button class="md:hidden text-white" id="mobileMenuBtn">
@@ -36,15 +36,19 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="hero-gradient min-h-[85vh] flex items-center text-white text-center px-6">
-        <div class="container mx-auto">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 gold-gradient">Jouw baken in boeken en bytes</h1>
+    <header class="hero-gradient min-h-[85vh] flex items-center text-white text-center px-6 relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none" style="background:
+            radial-gradient(1200px 600px at 20% 20%, rgba(212, 175, 55, 0.18), transparent 60%),
+            radial-gradient(900px 500px at 80% 70%, rgba(255, 255, 255, 0.10), transparent 55%),
+            linear-gradient(rgba(0, 31, 63, 0.35), rgba(0, 31, 63, 0.35));"></div>
+        <div class="container mx-auto relative z-10">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 pb-1 gold-gradient leading-[1.1]">Jouw baken in boeken en bytes</h1>
             <p class="text-lg md:text-2xl max-w-3xl mx-auto mb-12 text-gray-200 leading-relaxed">
                 Bij ArkAstro combineren we de tastbare waarde van boeken en spellen met de grenzeloze precisie van IT en 3D-technologie.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-6">
-                <a href="#winkel" class="bg-gold hover:bg-yellow-600 text-marine font-bold py-4 px-10 rounded-full transition duration-300 shadow-xl">Ontdek De Winkel</a>
-                <a href="#custom-lab" class="border-2 border-gold text-gold hover:bg-gold hover:text-marine font-bold py-4 px-10 rounded-full transition duration-300">Start Project</a>
+                <a href="boeken.html" class="bg-gold hover:bg-yellow-600 text-marine font-bold py-4 px-10 rounded-full transition duration-300 shadow-xl">Ontdek De Winkel</a>
+                <a href="custom-lab.html" class="border-2 border-gold text-gold hover:bg-gold hover:text-marine font-bold py-4 px-10 rounded-full transition duration-300">Start Project</a>
             </div>
         </div>
     </header>
@@ -84,6 +88,12 @@
                         </div>
                     </li>
                 </ul>
+                <div class="mt-10">
+                    <a href="it-solutions.html" class="inline-flex items-center font-bold text-marine hover:text-gold transition-colors">
+                        Ontdek meer
+                        <span class="ml-2" aria-hidden="true">→</span>
+                    </a>
+                </div>
             </div>
 
             <!-- The Custom Lab -->
@@ -119,6 +129,12 @@
                         </div>
                     </li>
                 </ul>
+                <div class="mt-10">
+                    <a href="custom-lab.html" class="inline-flex items-center font-bold text-marine hover:text-gold transition-colors">
+                        Ontdek meer
+                        <span class="ml-2" aria-hidden="true">→</span>
+                    </a>
+                </div>
             </div>
 
             <!-- The Shop -->
@@ -133,41 +149,11 @@
                     <li class="flex items-center"><span class="text-gold mr-3">✦</span> Uitdagende Gezelschapsspellen</li>
                     <li class="flex items-center"><span class="text-gold mr-3">✦</span> Exclusieve Hobby Accessoires</li>
                 </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Custom Project Portal -->
-    <section class="bg-marine text-white py-24">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold mb-4 gold-gradient">Start uw Custom Project</h2>
-                    <p class="text-gray-400">Deel uw visie en wij maken het tastbaar.</p>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Prompt Box -->
-                    <div class="space-y-4">
-                        <label class="block text-gold font-bold uppercase tracking-widest text-xs">Stap 1: Omschrijf uw idee</label>
-                        <textarea id="ideaPrompt" rows="8" class="w-full bg-white/5 border border-white/20 rounded-2xl p-6 text-white placeholder-gray-500 outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all" placeholder="Vertel ons over uw project, afmetingen, materialen of specifieke wensen..."></textarea>
-                    </div>
-
-                    <!-- File Upload -->
-                    <div class="space-y-4">
-                        <label class="block text-gold font-bold uppercase tracking-widest text-xs">Stap 2: Bestanden uploaden</label>
-                        <div class="h-[calc(100%-1.5rem)] border-2 border-dashed border-gold/30 rounded-2xl p-8 flex flex-col items-center justify-center text-center hover:border-gold cursor-pointer transition-colors group" onclick="document.getElementById('fileInput').click()">
-                            <input type="file" id="fileInput" class="hidden" accept=".stl,.3mf,.dxf,.lbrn,.lbrn2" multiple>
-                            <svg class="w-12 h-12 text-gold mb-4 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
-                            <p class="font-bold mb-1">Sleep bestanden hierheen</p>
-                            <p class="text-xs text-gray-400">STL, 3MF, DXF, LightBurn (.lbrn, .lbrn2)</p>
-                            <div id="fileList" class="mt-4 text-xs text-gold font-medium"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-12 text-center">
-                    <button class="bg-gold text-marine font-bold py-4 px-12 rounded-full hover:bg-yellow-600 transition-colors shadow-lg">Verzend Aanvraag</button>
+                <div class="mt-10">
+                    <a href="boeken.html" class="inline-flex items-center font-bold text-marine hover:text-gold transition-colors">
+                        Ontdek meer
+                        <span class="ml-2" aria-hidden="true">→</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -218,9 +204,9 @@
             <div>
                 <h5 class="font-bold mb-6 text-gold uppercase text-xs tracking-widest">Diensten</h5>
                 <ul class="text-sm text-gray-400 space-y-4">
-                    <li><a href="#it-solutions" class="hover:text-gold transition-colors">IT Managed Services</a></li>
-                    <li><a href="#custom-lab" class="hover:text-gold transition-colors">3D & Laser Lab</a></li>
-                    <li><a href="#winkel" class="hover:text-gold transition-colors">Boeken & Spellen</a></li>
+                    <li><a href="it-solutions.html" class="hover:text-gold transition-colors">IT Managed Services</a></li>
+                    <li><a href="custom-lab.html" class="hover:text-gold transition-colors">3D & Laser Lab</a></li>
+                    <li><a href="boeken.html" class="hover:text-gold transition-colors">Boeken & Spellen</a></li>
                 </ul>
             </div>
             <div>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De Winkel | ArkAstro - Standaard Boekhandel</title>
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="bg-marine text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <!-- Custom SVG Logo: Ster met pijl in negatieve ruimte -->
+                <svg class="w-10 h-10" viewBox="0 0 100 100">
+                    <polygon points="50,5 61,39 95,39 67,60 77,94 50,73 23,94 33,60 5,39 39,39" fill="#D4AF37" />
+                    <path d="M50 30 L40 50 L45 50 L45 65 L55 65 L55 50 L60 50 Z" fill="#001F3F" />
+                </svg>
+                <span class="text-2xl font-bold tracking-tighter">ARKASTRO</span>
+            </div>
+            <div class="hidden md:flex space-x-8 font-semibold text-sm uppercase tracking-widest">
+                <a href="it-solutions.html" class="nav-link">IT Solutions</a>
+                <a href="custom-lab.html" class="nav-link">Custom Lab</a>
+                <a href="boeken.html" class="nav-link">De Winkel</a>
+                <a href="#over-ons" class="nav-link">Over Ons</a>
+            </div>
+            <button class="md:hidden text-white" id="mobileMenuBtn">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- De Winkel Hero -->
+    <header class="hero-gradient-books min-h-[70vh] flex items-center text-white text-center px-6 relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none" style="background:
+            radial-gradient(1200px 600px at 20% 20%, rgba(212, 175, 55, 0.18), transparent 60%),
+            radial-gradient(900px 500px at 80% 70%, rgba(255, 255, 255, 0.10), transparent 55%),
+            linear-gradient(rgba(0, 31, 63, 0.35), rgba(0, 31, 63, 0.35));"></div>
+        <div class="container mx-auto relative z-10">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 pb-1 gold-gradient leading-[1.1]">Voer voor de Geest</h1>
+            <p class="text-lg md:text-2xl max-w-3xl mx-auto text-gray-200 leading-relaxed">
+                Stap binnen in onze Standaard Boekhandel. Een plek voor verhalen, bordspellen en ontmoetingen.
+            </p>
+        </div>
+    </header>
+
+    <!-- Store Experience -->
+    <section class="py-24 container mx-auto px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 underline decoration-gold decoration-4 underline-offset-8">Onze Winkel</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    ArkAstro is met trots een <span class="font-bold text-marine">Standaard Boekhandel</span>-locatie. We helpen je graag om te ontdekken, te kiezen en inspiratie mee naar huis te nemen.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="card p-10 rounded-3xl border-t-8 border-gold">
+                    <div class="mb-8">
+                        <svg class="w-14 h-14 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Boeken</h3>
+                    <p class="text-gray-600 mb-8">
+                        Een gecureerde selectie met aandacht voor verhalen die blijven hangen — van klassiekers tot nieuwe ontdekkingen.
+                    </p>
+                    <ul class="space-y-3 text-sm text-gray-700 font-medium">
+                        <li class="flex items-center"><span class="text-gold mr-3">✦</span> Fictie & non-fictie</li>
+                        <li class="flex items-center"><span class="text-gold mr-3">✦</span> Cadeautips & bestsellers</li>
+                        <li class="flex items-center"><span class="text-gold mr-3">✦</span> Hulp bij kiezen in de winkel</li>
+                    </ul>
+                </div>
+
+                <div class="card p-10 rounded-3xl border-t-8 border-gold">
+                    <div class="mb-8">
+                        <svg class="w-14 h-14 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6a2 2 0 012-2h2a2 2 0 012 2v6m4 0H5"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17V7a2 2 0 012-2h6a2 2 0 012 2v10"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Magazines</h3>
+                    <p class="text-gray-600 mb-8">
+                        Blader, ontdek en neem mee. Een aanbod met focus op kwaliteit, hobby’s en nieuwsgierigheid.
+                    </p>
+                    <ul class="space-y-3 text-sm text-gray-700 font-medium">
+                        <li class="flex items-center"><span class="text-gold mr-3">✦</span> Actuele titels</li>
+                        <li class="flex items-center"><span class="text-gold mr-3">✦</span> Inspiratie voor elk moment</li>
+                        <li class="flex items-center"><span class="text-gold mr-3">✦</span> Snelle afhaling mogelijk</li>
+                    </ul>
+                </div>
+
+                <div class="card p-10 rounded-3xl border-t-8 border-gold">
+                    <div class="mb-8">
+                        <svg class="w-14 h-14 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h10v10H7z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12h10"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Bordspellen</h3>
+                    <p class="text-gray-600 mb-8">
+                        Spellen voor elke groep — van snelle party games tot strategische avonden met vrienden en familie.
+                    </p>
+                    <ul class="space-y-3 text-sm text-gray-700 font-medium">
+                        <li class="flex items-center"><span class="text-gold mr-3">✦</span> Voor beginners & kenners</li>
+                        <li class="flex items-center"><span class="text-gold mr-3">✦</span> Gezellige spelavonden</li>
+                        <li class="flex items-center"><span class="text-gold mr-3">✦</span> Persoonlijk advies</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-16 bg-marine text-white rounded-3xl p-10 md:p-14 shadow-xl border border-white/10">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 gold-gradient">Online bestellen, in de winkel afhalen</h3>
+                    <p class="text-gray-300 mb-10 leading-relaxed">
+                        Boeken en andere artikelen bestel je online via de Standaard Boekhandel webshop. Kies daarna voor afhaling in onze winkel, zodat je jouw bestelling makkelijk en snel kan ophalen.
+                    </p>
+                    <a href="https://www.standaardboekhandel.be/" target="_blank" rel="noopener noreferrer" class="bg-gold hover:bg-yellow-600 text-marine font-bold py-4 px-10 rounded-full transition duration-300 shadow-xl inline-flex items-center justify-center">
+                        Bezoek onze Standaard Boekhandel Webshop
+                        <span class="ml-2" aria-hidden="true">↗</span>
+                    </a>
+                    <p class="text-xs text-gray-400 mt-4">
+                        Op deze pagina vind je geen winkelmandje of checkout — bestellingen verlopen via de officiële webshop.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-marine text-white pt-20 pb-10 border-t border-white/10">
+        <div class="container mx-auto px-6 grid md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-1">
+                <div class="flex items-center space-x-2 mb-6">
+                    <svg class="w-8 h-8" viewBox="0 0 100 100"><polygon points="50,5 61,39 95,39 67,60 77,94 50,73 23,94 33,60 5,39 39,39" fill="#D4AF37" /><path d="M50 30 L40 50 L45 50 L45 65 L55 65 L55 50 L60 50 Z" fill="#001F3F" /></svg>
+                    <h4 class="text-xl font-bold gold-gradient">ARKASTRO</h4>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed">Waar traditie de toekomst ontmoet. Jouw partner in IT, creativiteit en kennis.</p>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6 text-gold uppercase text-xs tracking-widest">Diensten</h5>
+                <ul class="text-sm text-gray-400 space-y-4">
+                    <li><a href="it-solutions.html" class="hover:text-gold transition-colors">IT Managed Services</a></li>
+                    <li><a href="custom-lab.html" class="hover:text-gold transition-colors">3D & Laser Lab</a></li>
+                    <li><a href="boeken.html" class="hover:text-gold transition-colors">Boeken & Spellen</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6 text-gold uppercase text-xs tracking-widest">Connect</h5>
+                <p class="text-sm text-gray-400 mb-2">www.arkastro.be</p>
+                <p class="text-sm text-gray-400">Instagram: <a href="#" class="hover:text-gold">@arkastro_bv</a></p>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6 text-gold uppercase text-xs tracking-widest">Update</h5>
+                <p class="text-xs text-gray-500 mb-4">Blijf op de hoogte van lanceringen en nieuwe boeken.</p>
+                <div class="flex">
+                    <input type="email" placeholder="E-mail" class="bg-white/10 border-none px-4 py-3 rounded-l-xl w-full text-sm outline-none focus:ring-1 focus:ring-gold">
+                    <button class="bg-gold text-marine px-4 py-3 rounded-r-xl font-bold text-sm hover:bg-yellow-600 transition-colors">OK</button>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 pt-10 border-t border-white/5 text-center text-[10px] text-gray-600 uppercase tracking-[0.3em]">
+            &copy; 2024 ArkAstro BV &bull; Ondernemen met passie &bull; Made in Belgium
+        </div>
+    </footer>
+
+    <script src="./main.js" defer></script>
+</body>
+</html>

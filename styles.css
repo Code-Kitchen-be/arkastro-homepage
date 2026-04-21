@@ -13,6 +13,7 @@ body {
 /* Gold gradient effect for that "metallic" shine */
 .gold-gradient {
   background: linear-gradient(135deg, #D4AF37 0%, #F5E050 50%, #B8860B 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -21,6 +22,30 @@ body {
   background:
     linear-gradient(rgba(0, 31, 63, 0.85), rgba(0, 31, 63, 0.85)),
     url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=2000');
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-gradient-it {
+  background:
+    linear-gradient(rgba(0, 31, 63, 0.85), rgba(0, 31, 63, 0.85)),
+    url('./assets/it-hero.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-gradient-custom {
+  background:
+    linear-gradient(rgba(0, 31, 63, 0.85), rgba(0, 31, 63, 0.85)),
+    url('./assets/craft-hero.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-gradient-books {
+  background:
+    linear-gradient(rgba(0, 31, 63, 0.85), rgba(0, 31, 63, 0.85)),
+    url('./assets/books-hero.jpg');
   background-size: cover;
   background-position: center;
 }
