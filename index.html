@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArkAstro | Jouw baken in boeken en bytes</title>
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="bg-marine text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <!-- Custom SVG Logo: Ster met pijl in negatieve ruimte -->
+                <svg class="w-10 h-10" viewBox="0 0 100 100">
+                    <polygon points="50,5 61,39 95,39 67,60 77,94 50,73 23,94 33,60 5,39 39,39" fill="#D4AF37" />
+                    <path d="M50 30 L40 50 L45 50 L45 65 L55 65 L55 50 L60 50 Z" fill="#001F3F" />
+                </svg>
+                <span class="text-2xl font-bold tracking-tighter">ARKASTRO</span>
+            </div>
+            <div class="hidden md:flex space-x-8 font-semibold text-sm uppercase tracking-widest">
+                <a href="#it-solutions" class="nav-link">IT Solutions</a>
+                <a href="#custom-lab" class="nav-link">Custom Lab</a>
+                <a href="#winkel" class="nav-link">De Winkel</a>
+                <a href="#over-ons" class="nav-link">Over Ons</a>
+            </div>
+            <button class="md:hidden text-white" id="mobileMenuBtn">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-gradient min-h-[85vh] flex items-center text-white text-center px-6">
+        <div class="container mx-auto">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 gold-gradient">Jouw baken in boeken en bytes</h1>
+            <p class="text-lg md:text-2xl max-w-3xl mx-auto mb-12 text-gray-200 leading-relaxed">
+                Bij ArkAstro combineren we de tastbare waarde van boeken en spellen met de grenzeloze precisie van IT en 3D-technologie.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="#winkel" class="bg-gold hover:bg-yellow-600 text-marine font-bold py-4 px-10 rounded-full transition duration-300 shadow-xl">Ontdek De Winkel</a>
+                <a href="#custom-lab" class="border-2 border-gold text-gold hover:bg-gold hover:text-marine font-bold py-4 px-10 rounded-full transition duration-300">Start Project</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Overview -->
+    <section class="py-24 container mx-auto px-6">
+        <div class="grid md:grid-cols-3 gap-12">
+            <!-- IT Solutions -->
+            <div id="it-solutions" class="card p-10 rounded-3xl border-t-8 border-gold">
+                <div class="mb-8">
+                    <svg class="w-14 h-14 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l-3 3 3 3M16 9l3 3-3 3M13 7l-2 10"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Digitaal Maatwerk & AI</h3>
+                <p class="text-gray-600 mb-8">Wij bouwen niet zomaar websites, we creëren slimme ecosystemen. Van webapplicaties tot tijdsbesparende automatisaties en een veilig netwerk.</p>
+                <ul class="space-y-3 text-sm text-gray-700 font-medium">
+                    <li class="flex items-center">
+                        <span class="text-gold mr-3">✦</span>
+                        <div class="leading-tight">
+                            <div class="font-bold text-marine">Web Development</div>
+                            <div class="text-gray-500 font-normal">Websites en custom applicaties.</div>
+                        </div>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-gold mr-3">✦</span>
+                        <div class="leading-tight">
+                            <div class="font-bold text-marine">Automatisatie & AI</div>
+                            <div class="text-gray-500 font-normal">Slimme integraties die tijd besparen.</div>
+                        </div>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-gold mr-3">✦</span>
+                        <div class="leading-tight">
+                            <div class="font-bold text-marine">Netwerk & Security</div>
+                            <div class="text-gray-500 font-normal">Installatie van netwerken en camera's.</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- The Custom Lab -->
+            <div id="custom-lab" class="card p-10 rounded-3xl border-t-8 border-gold">
+                <div class="mb-8">
+                    <svg class="w-14 h-14 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">The Custom Lab</h3>
+                <p class="text-gray-600 mb-8">Van digitaal ontwerp naar tastbare realiteit. Wij zetten innovatie om in puur vakmanschap.</p>
+                <ul class="space-y-3 text-sm text-gray-700 font-medium">
+                    <li class="flex items-center"><span class="text-gold mr-3">✦</span> 3D-Printing (STL, 3MF)</li>
+                    <li class="flex items-center"><span class="text-gold mr-3">✦</span> Lasercutting (LightBurn)</li>
+                    <li class="flex items-center"><span class="text-gold mr-3">✦</span> Custom Game Upgrades</li>
+                </ul>
+            </div>
+
+            <!-- The Shop -->
+            <div id="winkel" class="card p-10 rounded-3xl border-t-8 border-gold">
+                <div class="mb-8">
+                    <svg class="w-14 h-14 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Voer voor de Geest</h3>
+                <p class="text-gray-600 mb-8">Stap binnen in een wereld van verhalen en strategie. Een gecureerde selectie voor de denker.</p>
+                <ul class="space-y-3 text-sm text-gray-700 font-medium">
+                    <li class="flex items-center"><span class="text-gold mr-3">✦</span> Gecureerde Boeken & Magazines</li>
+                    <li class="flex items-center"><span class="text-gold mr-3">✦</span> Uitdagende Gezelschapsspellen</li>
+                    <li class="flex items-center"><span class="text-gold mr-3">✦</span> Exclusieve Hobby Accessoires</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Project Portal -->
+    <section class="bg-marine text-white py-24">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4 gold-gradient">Start uw Custom Project</h2>
+                    <p class="text-gray-400">Deel uw visie en wij maken het tastbaar.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Prompt Box -->
+                    <div class="space-y-4">
+                        <label class="block text-gold font-bold uppercase tracking-widest text-xs">Stap 1: Omschrijf uw idee</label>
+                        <textarea id="ideaPrompt" rows="8" class="w-full bg-white/5 border border-white/20 rounded-2xl p-6 text-white placeholder-gray-500 outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all" placeholder="Vertel ons over uw project, afmetingen, materialen of specifieke wensen..."></textarea>
+                    </div>
+
+                    <!-- File Upload -->
+                    <div class="space-y-4">
+                        <label class="block text-gold font-bold uppercase tracking-widest text-xs">Stap 2: Bestanden uploaden</label>
+                        <div class="h-[calc(100%-1.5rem)] border-2 border-dashed border-gold/30 rounded-2xl p-8 flex flex-col items-center justify-center text-center hover:border-gold cursor-pointer transition-colors group" onclick="document.getElementById('fileInput').click()">
+                            <input type="file" id="fileInput" class="hidden" accept=".stl,.3mf,.dxf,.lbrn,.lbrn2" multiple>
+                            <svg class="w-12 h-12 text-gold mb-4 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                            <p class="font-bold mb-1">Sleep bestanden hierheen</p>
+                            <p class="text-xs text-gray-400">STL, 3MF, DXF, LightBurn (.lbrn, .lbrn2)</p>
+                            <div id="fileList" class="mt-4 text-xs text-gold font-medium"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center">
+                    <button class="bg-gold text-marine font-bold py-4 px-12 rounded-full hover:bg-yellow-600 transition-colors shadow-lg">Verzend Aanvraag</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision / Over Ons -->
+    <section id="over-ons" class="py-24 container mx-auto px-6">
+        <div class="flex flex-col lg:row items-center gap-20">
+            <div class="lg:w-1/2">
+                <h2 class="text-3xl font-bold mb-10 underline decoration-gold decoration-4 underline-offset-8">Onze Visie</h2>
+                <div class="space-y-6">
+                    <p class="text-xl leading-relaxed text-gray-800 italic border-l-4 border-gold pl-8">
+                        "Bij ArkAstro creëren we een veilige haven voor wie wil ontdekken, leren en groeien. Wij geloven dat de toekomst gebouwd wordt op de fundamenten van het verleden; daarom combineren we de tastbare inspiratie van boeken en spellen met de grenzeloze precisie van IT-oplossingen en 3D-innovatie."
+                    </p>
+                    <p class="text-gray-600 leading-loose">
+                        Onze missie is om elke klant — van lezer tot maker — de tools te bieden om hun horizon te verbreden en hun ideeën tastbaar te maken. Of het nu gaat om een complex IT-vraagstuk of een gepersonaliseerd 3D-geprint cadeau: wij zijn uw baken.
+                    </p>
+                </div>
+            </div>
+            <div class="lg:w-1/2 grid grid-cols-2 gap-6 w-full">
+                <div class="bg-gray-200 aspect-square rounded-3xl overflow-hidden shadow-inner flex items-center justify-center text-gray-400 text-center p-8">
+                    <p class="text-sm font-bold uppercase tracking-widest">[Team Foto: Thomas & Liesbeth]</p>
+                </div>
+                <div class="flex flex-col gap-6">
+                    <div class="bg-marine h-full rounded-3xl flex flex-col items-center justify-center p-8 text-center shadow-xl">
+                        <span class="text-gold text-5xl mb-2 font-bold italic">100%</span>
+                        <span class="text-white text-xs uppercase tracking-[0.2em] font-bold">Vakmanschap</span>
+                    </div>
+                    <div class="bg-gold h-full rounded-3xl flex flex-col items-center justify-center p-8 text-center shadow-xl">
+                        <svg class="w-10 h-10 text-marine mb-2" fill="currentColor" viewBox="0 0 20 20"><path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V4.804z"></path></svg>
+                        <span class="text-marine text-xs uppercase tracking-widest font-bold">Gecureerde Kennis</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-marine text-white pt-20 pb-10 border-t border-white/10">
+        <div class="container mx-auto px-6 grid md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-1">
+                <div class="flex items-center space-x-2 mb-6">
+                    <svg class="w-8 h-8" viewBox="0 0 100 100"><polygon points="50,5 61,39 95,39 67,60 77,94 50,73 23,94 33,60 5,39 39,39" fill="#D4AF37" /><path d="M50 30 L40 50 L45 50 L45 65 L55 65 L55 50 L60 50 Z" fill="#001F3F" /></svg>
+                    <h4 class="text-xl font-bold gold-gradient">ARKASTRO</h4>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed">Waar traditie de toekomst ontmoet. Jouw partner in IT, creativiteit en kennis.</p>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6 text-gold uppercase text-xs tracking-widest">Diensten</h5>
+                <ul class="text-sm text-gray-400 space-y-4">
+                    <li><a href="#it-solutions" class="hover:text-gold transition-colors">IT Managed Services</a></li>
+                    <li><a href="#custom-lab" class="hover:text-gold transition-colors">3D & Laser Lab</a></li>
+                    <li><a href="#winkel" class="hover:text-gold transition-colors">Boeken & Spellen</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6 text-gold uppercase text-xs tracking-widest">Connect</h5>
+                <p class="text-sm text-gray-400 mb-2">www.arkastro.be</p>
+                <p class="text-sm text-gray-400">Instagram: <a href="#" class="hover:text-gold">@arkastro_bv</a></p>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6 text-gold uppercase text-xs tracking-widest">Update</h5>
+                <p class="text-xs text-gray-500 mb-4">Blijf op de hoogte van lanceringen en nieuwe boeken.</p>
+                <div class="flex">
+                    <input type="email" placeholder="E-mail" class="bg-white/10 border-none px-4 py-3 rounded-l-xl w-full text-sm outline-none focus:ring-1 focus:ring-gold">
+                    <button class="bg-gold text-marine px-4 py-3 rounded-r-xl font-bold text-sm hover:bg-yellow-600 transition-colors">OK</button>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 pt-10 border-t border-white/5 text-center text-[10px] text-gray-600 uppercase tracking-[0.3em]">
+            &copy; 2024 ArkAstro BV &bull; Ondernemen met passie &bull; Made in Belgium
+        </div>
+    </footer>
+
+    <script src="./main.js" defer></script>
+</body>
+</html>
