@@ -181,37 +181,60 @@
         </div>
     </section>
 
-    <!-- Custom Project Portal -->
-    <section class="bg-marine text-white py-24">
+    <!-- Contact CTA -->
+    <section class="bg-gold text-marine py-20">
         <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold mb-4 gold-gradient">Start uw Custom Project</h2>
-                    <p class="text-gray-400">Deel uw visie en wij maken het tastbaar.</p>
-                </div>
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Uw ontwerp laten realiseren?</h2>
+                <p class="text-marine/90 mb-10 leading-relaxed">
+                    Heeft u een concept dat u wilt laten 3D-printen, lasercutten of ontwerpen? Wij staan klaar om van uw idee een tastbaar resultaat te maken. Stuur ons een bericht met uw wensen.
+                </p>
+                <a href="mailto:info@arkastro.be" class="bg-marine text-white font-bold py-4 px-10 rounded-full hover:bg-marine/90 transition duration-300 shadow-xl inline-flex items-center justify-center">
+                    Stuur ons uw aanvraag
+                </a>
+            </div>
+        </div>
+    </section>
 
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Prompt Box -->
-                    <div class="space-y-4">
-                        <label class="block text-gold font-bold uppercase tracking-widest text-xs">Stap 1: Omschrijf uw idee</label>
-                        <textarea id="ideaPrompt" rows="8" class="w-full bg-white/5 border border-white/20 rounded-2xl p-6 text-white placeholder-gray-500 outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all" placeholder="Vertel ons over uw project, afmetingen, materialen of specifieke wensen..."></textarea>
+    <!-- Portfolio -->
+    <section class="py-24 container mx-auto px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 underline decoration-gold decoration-4 underline-offset-8">Portfolio</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Een selectie van projecten uit ons lab.
+                </p>
+            </div>
+
+            <div class="card p-10 rounded-3xl border-t-8 border-gold">
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    <div class="order-2 md:order-1">
+                        <div class="text-sm font-bold uppercase tracking-widest text-gold mb-3">Trophies • 3D + Laser</div>
+                        <h3 class="text-2xl font-bold mb-3">Voetbalkamp trofeeën voor kids</h3>
+                        <p class="text-gray-600 leading-relaxed mb-8">
+                            Voor een voetbalkamp maakten we een reeks trofeeën op basis van het kamp-logo. Het logo werd gelasercut en gegraveerd, gemonteerd op een 3D-geprinte voet met een ingewerkte, gelasercutte naamplaat.
+                        </p>
+                        <ul class="space-y-3 text-sm text-gray-700 font-medium">
+                            <li class="flex items-start">
+                                <span class="text-gold mr-3">✦</span>
+                                <div class="leading-tight">
+                                    <div class="font-bold text-marine">Lasercutting & gravure</div>
+                                    <div class="text-gray-500 font-normal">Logo in hout met scherpe details.</div>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-gold mr-3">✦</span>
+                                <div class="leading-tight">
+                                    <div class="font-bold text-marine">3D-geprinte basis</div>
+                                    <div class="text-gray-500 font-normal">Stabiel ontwerp met perfecte passing.</div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
 
-                    <!-- File Upload -->
-                    <div class="space-y-4">
-                        <label class="block text-gold font-bold uppercase tracking-widest text-xs">Stap 2: Bestanden uploaden</label>
-                        <div class="h-[calc(100%-1.5rem)] border-2 border-dashed border-gold/30 rounded-2xl p-8 flex flex-col items-center justify-center text-center hover:border-gold cursor-pointer transition-colors group" onclick="document.getElementById('fileInput').click()">
-                            <input type="file" id="fileInput" class="hidden" accept=".stl,.3mf,.dxf,.lbrn,.lbrn2" multiple>
-                            <svg class="w-12 h-12 text-gold mb-4 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
-                            <p class="font-bold mb-1">Sleep bestanden hierheen</p>
-                            <p class="text-xs text-gray-400">STL, 3MF, DXF, LightBurn (.lbrn, .lbrn2)</p>
-                            <div id="fileList" class="mt-4 text-xs text-gold font-medium"></div>
-                        </div>
+                    <div class="order-1 md:order-2">
+                        <img src="./assets/la_croqueta_2026.jpg" alt="Trofeeën voor een voetbalkamp: gelasercut en gegraveerd logo op een 3D-geprinte basis met naamplaat." class="w-full h-72 md:h-[420px] object-cover rounded-2xl shadow-inner">
                     </div>
-                </div>
-
-                <div class="mt-12 text-center">
-                    <button class="bg-gold text-marine font-bold py-4 px-12 rounded-full hover:bg-yellow-600 transition-colors shadow-lg">Verzend Aanvraag</button>
                 </div>
             </div>
         </div>
