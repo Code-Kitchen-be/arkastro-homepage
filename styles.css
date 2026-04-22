@@ -51,6 +51,11 @@ body {
 }
 
 .nav-link:hover { color: #D4AF37; transition: 0.3s; }
+.nav-link[aria-current="page"] {
+  color: #D4AF37;
+  border-bottom: 2px solid #D4AF37;
+  padding-bottom: 2px;
+}
 
 .card {
   background: white;
