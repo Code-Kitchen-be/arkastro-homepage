@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo | ArkAstro</title>
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" type="image/png" href="./assets/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <link rel="shortcut icon" href="./assets/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Arkastro BV" />
+    <link rel="manifest" href="./assets/site.webmanifest" />
+    <meta name="description" content="Bingo — desktop bingo-caller voor live events. Download voor Windows en macOS." />
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="bg-marine text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-3">
+                <img src="./assets/ARKASTRO_LOGO-base.svg" alt="ArkAstro logo" class="w-10 h-10" />
+                <span class="text-2xl font-bold tracking-tighter">ARKASTRO</span>
+            </a>
+            <div class="hidden md:flex space-x-8 font-semibold text-sm uppercase tracking-widest">
+                <a href="it-solutions.html" class="nav-link">IT Solutions</a>
+                <a href="custom-lab.html" class="nav-link">Custom Lab</a>
+                <a href="boeken.html" class="nav-link">De Winkel</a>
+                <a href="index.html#over-ons" class="nav-link">Over Ons</a>
+            </div>
+            <button class="md:hidden text-white" id="mobileMenuBtn">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="bg-marine text-white px-6 py-20 md:py-28 relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none" style="background:
+            radial-gradient(1000px 500px at 15% 20%, rgba(212, 175, 55, 0.20), transparent 60%),
+            radial-gradient(800px 400px at 85% 75%, rgba(255, 255, 255, 0.08), transparent 55%);"></div>
+        <div class="container mx-auto relative z-10 max-w-4xl text-center">
+            <img src="./assets/bingo-logo.png" alt="Bingo logo" class="mx-auto h-28 md:h-36 w-auto mb-8" />
+            <p class="text-sm font-bold uppercase tracking-widest text-gold mb-4">Desktop app</p>
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 pb-1 gold-gradient leading-[1.1]">Bingo</h1>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto text-gray-200 leading-relaxed">
+                Desktop bingo-caller voor live events. Nederlandse interface, fullscreen op je laptop, en spiegel het scherm naar de projector.
+            </p>
+        </div>
+    </header>
+
+    <!-- Downloads -->
+    <section class="py-20 container mx-auto px-6">
+        <div class="max-w-3xl mx-auto text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 underline decoration-gold decoration-4 underline-offset-8">Download</h2>
+            <p class="text-gray-600 leading-relaxed">
+                Kies je platform. De knoppen wijzen steeds naar de nieuwste release.
+            </p>
+        </div>
+
+        <div class="max-w-3xl mx-auto grid sm:grid-cols-2 gap-6">
+            <a id="bingo-download-win"
+               href="https://github.com/Tseberechts/bingo/releases/download/v1.0.0/Bingo.Setup.1.0.0.exe"
+               class="card p-8 rounded-3xl border-t-8 border-gold flex flex-col items-center text-center hover:cursor-pointer">
+                <span class="text-sm font-bold uppercase tracking-widest text-gold mb-3">Windows</span>
+                <span class="text-xl font-bold text-marine mb-2">Installer (.exe)</span>
+                <span class="text-gray-500 text-sm mb-6">NSIS-setup voor Windows</span>
+                <span class="bg-marine text-white font-bold py-3 px-8 rounded-full inline-flex items-center justify-center">
+                    Download Windows
+                </span>
+            </a>
+
+            <a id="bingo-download-mac"
+               href="https://github.com/Tseberechts/bingo/releases/download/v1.0.0/Bingo-1.0.0-arm64.dmg"
+               class="card p-8 rounded-3xl border-t-8 border-gold flex flex-col items-center text-center hover:cursor-pointer">
+                <span class="text-sm font-bold uppercase tracking-widest text-gold mb-3">macOS</span>
+                <span class="text-xl font-bold text-marine mb-2">Disk image (.dmg)</span>
+                <span class="text-gray-500 text-sm mb-6">Apple Silicon (arm64)</span>
+                <span class="bg-marine text-white font-bold py-3 px-8 rounded-full inline-flex items-center justify-center">
+                    Download macOS
+                </span>
+            </a>
+        </div>
+
+        <p class="max-w-3xl mx-auto text-center text-sm text-gray-500 mt-8">
+            Andere bestanden (portable, Linux)?
+            <a href="https://github.com/Tseberechts/bingo/releases/latest" target="_blank" rel="noopener noreferrer" class="font-bold text-marine hover:text-gold transition-colors">
+                Alle releases op GitHub
+            </a>
+        </p>
+    </section>
+
+    <!-- Info -->
+    <section class="pb-24 container mx-auto px-6">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold mb-6 underline decoration-gold decoration-4 underline-offset-8">Hoe werkt het?</h2>
+            <div class="space-y-6 text-gray-600 text-lg leading-relaxed">
+                <p>
+                    Bingo is een desktop-app voor de caller op een live event. Je werkt in één fullscreenvenster;
+                    spiegel (duplicate) het laptopscherm naar de projector via je besturingssysteem — er is geen apart publieksvenster.
+                </p>
+                <ul class="space-y-4 text-base text-gray-700 font-medium">
+                    <li class="flex items-start">
+                        <img src="./assets/ARKASTRO_LOGO-mini.svg" alt="" class="w-4 h-4 mr-3 mt-1 flex-shrink-0" />
+                        <div class="leading-tight">
+                            <div class="font-bold text-marine">Event starten</div>
+                            <div class="text-gray-500 font-normal">Sluit de projector aan, spiegel het scherm, start Bingo en druk F11 voor fullscreen.</div>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <img src="./assets/ARKASTRO_LOGO-mini.svg" alt="" class="w-4 h-4 mr-3 mt-1 flex-shrink-0" />
+                        <div class="leading-tight">
+                            <div class="font-bold text-marine">Platformen</div>
+                            <div class="text-gray-500 font-normal">Windows en macOS (Apple Silicon). Broncode en updates via GitHub.</div>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <img src="./assets/ARKASTRO_LOGO-mini.svg" alt="" class="w-4 h-4 mr-3 mt-1 flex-shrink-0" />
+                        <div class="leading-tight">
+                            <div class="font-bold text-marine">Eerste start</div>
+                            <div class="text-gray-500 font-normal">Builds zijn niet digitaal ondertekend. Windows: SmartScreen → Meer info → Toch uitvoeren. macOS: rechtsklik → Open, of Gatekeeper omzeilen via Systeeminstellingen.</div>
+                        </div>
+                    </li>
+                </ul>
+                <p class="pt-2">
+                    <a href="https://github.com/Tseberechts/bingo" target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-bold text-marine hover:text-gold transition-colors">
+                        Broncode op GitHub
+                        <span class="ml-2 text-gold" aria-hidden="true">↗</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-marine text-white pt-20 pb-10 border-t border-white/10">
+        <div class="container mx-auto px-6 grid md:grid-cols-3 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-1">
+                <div class="flex items-center space-x-2 mb-6">
+                    <img src="./assets/ARKASTRO_LOGO-base.svg" alt="ArkAstro logo" class="w-8 h-8" />
+                    <h4 class="text-xl font-bold gold-gradient">ARKASTRO</h4>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed">Waar traditie de toekomst ontmoet. Jouw partner in IT, creativiteit en kennis.</p>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6 text-gold uppercase text-xs tracking-widest">Diensten</h5>
+                <ul class="text-sm text-gray-400 space-y-4">
+                    <li><a href="it-solutions.html" class="hover:text-gold transition-colors">IT Managed Services</a></li>
+                    <li><a href="custom-lab.html" class="hover:text-gold transition-colors">3D & Laser Lab</a></li>
+                    <li><a href="boeken.html" class="hover:text-gold transition-colors">Boeken & Spellen</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6 text-gold uppercase text-xs tracking-widest">Connect</h5>
+                <p class="text-sm text-gray-400 mb-2">
+                    <a href="mailto:info@arkastro.be" class="hover:text-gold transition-colors">info@arkastro.be</a>
+                </p>
+                <a href="https://www.instagram.com/arkastro_bv/" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-2 text-sm text-gray-400 hover:text-gold transition-colors" aria-label="Instagram: @arkastro_bv">
+                    <svg class="w-5 h-5 text-gray-400 group-hover:text-gold transition-colors" viewBox="-5 -10 110 135" fill="currentColor" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+                        <path d="m23.164 3.9219h53.672c10.59 0 19.242 8.6523 19.242 19.242v53.672c0 10.59-8.6562 19.242-19.242 19.242h-53.672c-10.59 0-19.242-8.6523-19.242-19.242v-53.672c0-10.59 8.6523-19.242 19.242-19.242zm55.516 13.078c-5.6875 0-5.6875 8.6406 0 8.6406s5.6875-8.6406 0-8.6406zm-28.68 4.4414c-15.773 0-28.559 12.789-28.559 28.559 0 25.359 30.805 38.145 48.754 20.195 17.949-17.949 5.1641-48.754-20.195-48.754zm16.121 12.438c-14.324-14.324-38.922-4.1289-38.922 16.121s24.598 30.445 38.922 16.121c8.9062-8.9023 8.9062-23.34 0-32.242zm10.715-24.199h-53.672c-7.4102 0-13.484 6.0742-13.484 13.484v53.672c0 7.4102 6.0742 13.484 13.484 13.484h53.672c7.4102 0 13.484-6.0742 13.484-13.484v-53.672c0-7.4102-6.0742-13.484-13.484-13.484z" fill-rule="evenodd"></path>
+                    </svg>
+                    <span>@arkastro_bv</span>
+                </a>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 pt-10 border-t border-white/5 text-center text-[10px] text-gray-600 uppercase tracking-[0.3em]">
+            &copy; 2026 ArkAstro BV &bull; Ondernemen met passie &bull; Made in Belgium
+        </div>
+    </footer>
+
+    <script async src="https://plausible.io/js/pa-IAFDXWi-esw0gbjR7ehHE.js"></script>
+    <script src="./main.js" defer></script>
+</body>
+</html>
