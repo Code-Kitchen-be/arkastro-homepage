@@ -27,16 +27,10 @@ jobs:
           node-version: '20'
           cache: npm
 
-      - name: Install and build CSS
+      - name: Build site
         run: |
           npm ci
-          npm run build:css
-
-      - name: Prepare site
-        run: |
-          mkdir -p _site
-          cp -R assets _site/
-          cp *.html CNAME styles.css main.js _site/
+          npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

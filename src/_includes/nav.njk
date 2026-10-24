@@ -1,0 +1,17 @@
+<nav class="bg-marine text-white sticky top-0 z-50 shadow-lg">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="index.html" class="flex items-center space-x-3">
+            <img src="./assets/ARKASTRO_LOGO-base.svg" alt="ArkAstro logo" class="w-10 h-10" />
+            <span class="text-2xl font-bold tracking-tighter">ARKASTRO</span>
+        </a>
+        <div class="hidden md:flex space-x-8 font-semibold text-sm uppercase tracking-widest">
+            <a href="it-solutions.html" class="nav-link"{% if activeNav == "it" %} aria-current="page"{% endif %}>IT Solutions</a>
+            <a href="custom-lab.html" class="nav-link"{% if activeNav == "lab" %} aria-current="page"{% endif %}>Custom Lab</a>
+            <a href="boeken.html" class="nav-link"{% if activeNav == "boeken" %} aria-current="page"{% endif %}>De Winkel</a>
+            <a href="index.html#over-ons" class="nav-link"{% if activeNav == "over-ons" %} aria-current="page"{% endif %}>Over Ons</a>
+        </div>
+        <button class="md:hidden text-white" id="mobileMenuBtn">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+    </div>
+</nav>

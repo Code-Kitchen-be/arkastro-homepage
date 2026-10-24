@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-@source "../*.html";
+@source "./pages/**/*.njk";
+@source "./_includes/**/*.njk";
+@source "./_layouts/**/*.njk";
 
 @theme {
   --color-marine: #001F3F;

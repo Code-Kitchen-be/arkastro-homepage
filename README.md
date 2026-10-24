@@ -1,32 +1,41 @@
 # arkastro-homepage
 
-Static site for [arkastro.be](https://arkastro.be), deployed to GitHub Pages.
+Static site for [arkastro.be](https://arkastro.be), built with [Eleventy](https://www.11ty.dev/) + Tailwind CSS and deployed to GitHub Pages.
+
+## Structure
+
+| Path | Role |
+| --- | --- |
+| [`src/pages/`](src/pages/) | Page content (Nunjucks) |
+| [`src/_layouts/base.njk`](src/_layouts/base.njk) | Shared document shell |
+| [`src/_includes/`](src/_includes/) | Shared `nav`, `footer`, `head` |
+| [`src/styles.css`](src/styles.css) | Tailwind source + brand styles |
+| [`main.js`](main.js) | Client JS (forms, bingo downloads) |
+| [`mailer/`](mailer/) | DigitalOcean mailer (separate deploy) |
 
 ## Development
 
 ```bash
 npm install
-npm run watch:css
+npm run dev
 ```
 
-`watch:css` rebuilds `styles.css` from [`src/styles.css`](src/styles.css) whenever HTML or source CSS changes. Serve the repo root with any static file server (for example `npx serve .`) and open the HTML files in a browser.
+That watches Tailwind and serves the site (Eleventy). Open the local URL Eleventy prints (usually `http://localhost:8080`).
 
-One-shot build (same as CI):
+One-shot production build:
 
 ```bash
-npm run build:css
+npm run build
 ```
 
-Do not commit `styles.css` — it is generated and gitignored.
+Output goes to `_site/` (gitignored). Do not commit `styles.css` — it is generated.
 
 ## Production
 
-Push to `main` runs [`.github/workflows/pages.yml`](.github/workflows/pages.yml): install deps, build Tailwind CSS, deploy the site to GitHub Pages.
+Push to `main` runs [`.github/workflows/pages.yml`](.github/workflows/pages.yml): `npm run build`, then deploy `_site` to GitHub Pages.
 
-**One-time:** in the GitHub repo → Settings → Pages → Source → **GitHub Actions** (not “Deploy from a branch”).
-
-Custom domain is set via [`CNAME`](CNAME) (`arkastro.be`).
+Pages source must be **GitHub Actions**. Custom domain is set via [`CNAME`](CNAME) (`arkastro.be`).
 
 ## Mailer
 
-Form submissions go through the DigitalOcean function under [`mailer/`](mailer/). See [`mailer/README.md`](mailer/README.md).
+Form submissions (contact, sponsoraanvraag) go through [`mailer/`](mailer/). See [`mailer/README.md`](mailer/README.md).

@@ -3,10 +3,16 @@
   "private": true,
   "scripts": {
     "build:css": "tailwindcss -i ./src/styles.css -o ./styles.css --minify",
-    "watch:css": "tailwindcss -i ./src/styles.css -o ./styles.css --watch"
+    "watch:css": "tailwindcss -i ./src/styles.css -o ./styles.css --watch",
+    "build:site": "eleventy",
+    "build": "npm run build:css && npm run build:site",
+    "serve": "eleventy --serve",
+    "dev": "concurrently -k -n css,site -c yellow,cyan \"npm run watch:css\" \"npm run serve\""
   },
   "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
     "@tailwindcss/cli": "^4.1.14",
+    "concurrently": "^9.2.1",
     "tailwindcss": "^4.1.14"
   }
 }

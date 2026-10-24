@@ -7,6 +7,11 @@ menuBtn?.addEventListener('click', () => {
 
 // Navbar active page highlighting
 document.addEventListener('DOMContentLoaded', () => {
+  const year = String(new Date().getFullYear());
+  document.querySelectorAll('[data-copyright-year]').forEach((el) => {
+    el.textContent = year;
+  });
+
   const currentFile = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
   const currentHash = (window.location.hash || '').toLowerCase();
 
