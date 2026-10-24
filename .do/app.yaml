@@ -1,0 +1,50 @@
+# DigitalOcean App Platform spec for the mailer.
+# Create the app from this repo (source directory: mailer/), then set RESEND_API_KEY
+# as an encrypted runtime secret in the dashboard. Update github.repo to your remote.
+#
+# Public endpoint after domain + DNS: https://mailer.arkastro.be/mail/send
+
+name: arkastro-mailer
+region: ams
+domains:
+  - domain: mailer.arkastro.be
+    type: PRIMARY
+functions:
+  - name: mailer
+    source_dir: /mailer
+    # Uncomment and set your GitHub repo when applying this spec via doctl/API:
+    # github:
+    #   repo: your-org/arkastro-homepage
+    #   branch: main
+    #   deploy_on_push: true
+    envs:
+      - key: RESEND_API_KEY
+        scope: RUN_TIME
+        type: SECRET
+      - key: FROM_EMAIL
+        scope: RUN_TIME
+        type: GENERAL
+        value: "ArkAstro <noreply@arkastro.be>"
+      - key: TO_EMAIL
+        scope: RUN_TIME
+        type: GENERAL
+        value: "info@arkastro.be"
+ingress:
+  rules:
+    - match:
+        path:
+          prefix: /
+      component:
+        name: mailer
+        preserve_path_prefix: true
+      cors:
+        allow_origins:
+          - exact: https://arkastro.be
+          - exact: https://www.arkastro.be
+        allow_methods:
+          - POST
+          - OPTIONS
+        allow_headers:
+          - Content-Type
+        max_age: 24h
+        allow_credentials: false

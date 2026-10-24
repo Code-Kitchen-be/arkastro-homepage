@@ -1,0 +1,7 @@
+.env
+.env.*
+!.env.example
+.do/
+node_modules/
+.deployed/
+project.yml.bak

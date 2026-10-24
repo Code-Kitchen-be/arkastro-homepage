@@ -1,0 +1,13 @@
+packages:
+  - name: mail
+    functions:
+      - name: send
+        runtime: nodejs:22
+        web: true
+        limits:
+          timeout: 10000
+          memory: 256
+        environment:
+          RESEND_API_KEY: "${RESEND_API_KEY}"
+          FROM_EMAIL: "${FROM_EMAIL}"
+          TO_EMAIL: "${TO_EMAIL}"
