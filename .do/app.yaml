@@ -37,14 +37,6 @@ ingress:
       component:
         name: mailer
         preserve_path_prefix: true
-      cors:
-        allow_origins:
-          - exact: https://arkastro.be
-          - exact: https://www.arkastro.be
-        allow_methods:
-          - POST
-          - OPTIONS
-        allow_headers:
-          - Content-Type
-        max_age: 24h
-        allow_credentials: false
+    # Do not set ingress cors: App Platform already injects
+    # Access-Control-Allow-Origin: *. Extra CORS concatenates into an
+    # invalid value (e.g. *,https://arkastro.be) that browsers reject.

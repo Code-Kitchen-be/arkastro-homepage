@@ -4,6 +4,10 @@
  * POST https://mailer.arkastro.be/mail/send
  * Accepts: subject, text and/or html, replyTo?, tag?, website? (honeypot)
  * Sends only to TO_EMAIL (fixed). Origin must be arkastro.be / www.
+ *
+ * Do not set Access-Control-* headers here: App Platform already injects
+ * Access-Control-Allow-Origin: *. Adding our own concatenates into an
+ * invalid value (e.g. *,https://arkastro.be) that browsers reject.
  */
 
 const ALLOWED_ORIGINS = [
@@ -21,10 +25,8 @@ async function main(event = {}) {
   const headers = normalizeHeaders(http.headers || {});
   const origin = headers.origin || '';
 
-  const cors = corsHeaders(origin);
-
   if (method === 'OPTIONS') {
-    return response(204, '', cors);
+    return response(204, '');
   }
 
   // Public health check — open in a browser to verify deploy/routing
@@ -33,28 +35,28 @@ async function main(event = {}) {
       ok: true,
       service: 'arkastro-mailer',
       time: new Date().toISOString(),
-    }, corsHeadersForHealth(origin));
+    });
   }
 
   if (method !== 'POST') {
-    return response(405, { error: 'Method not allowed' }, cors);
+    return response(405, { error: 'Method not allowed' });
   }
 
   if (!isAllowedOrigin(origin)) {
-    return response(403, { error: 'Forbidden' }, cors);
+    return response(403, { error: 'Forbidden' });
   }
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     console.error('RESEND_API_KEY is not set');
-    return response(500, { error: 'Server misconfigured' }, cors);
+    return response(500, { error: 'Server misconfigured' });
   }
 
   const payload = extractPayload(event);
 
   // Honeypot — bots fill this; humans leave it empty
   if (payload.website) {
-    return response(200, { ok: true }, cors);
+    return response(200, { ok: true });
   }
 
   const subject = String(payload.subject || '').trim().slice(0, MAX_SUBJECT);
@@ -64,15 +66,15 @@ async function main(event = {}) {
   const tag = String(payload.tag || '').trim().slice(0, MAX_TAG);
 
   if (!subject) {
-    return response(400, { error: 'subject is required' }, cors);
+    return response(400, { error: 'subject is required' });
   }
 
   if (!text && !html) {
-    return response(400, { error: 'text or html is required' }, cors);
+    return response(400, { error: 'text or html is required' });
   }
 
   if (replyTo && !isValidEmail(replyTo)) {
-    return response(400, { error: 'Invalid replyTo email' }, cors);
+    return response(400, { error: 'Invalid replyTo email' });
   }
 
   const from = process.env.FROM_EMAIL || 'ArkAstro <noreply@arkastro.be>';
@@ -89,10 +91,10 @@ async function main(event = {}) {
   if (replyTo) body.reply_to = replyTo;
   if (tag) body.tags = [{ name: 'category', value: sanitizeTag(tag) }];
 
-  return sendWithResend(apiKey, body, cors);
+  return sendWithResend(apiKey, body);
 }
 
-async function sendWithResend(apiKey, body, cors) {
+async function sendWithResend(apiKey, body) {
   try {
     const resendRes = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -110,18 +112,16 @@ async function sendWithResend(apiKey, body, cors) {
       console.error('Resend error', resendRes.status, resendBody);
       return response(
         502,
-        { error: 'Send failed. Try again later or mail info@arkastro.be.' },
-        cors
+        { error: 'Send failed. Try again later or mail info@arkastro.be.' }
       );
     }
 
-    return response(200, { ok: true, id: resendBody.id || null }, cors);
+    return response(200, { ok: true, id: resendBody.id || null });
   } catch (err) {
     console.error('Resend request failed', err);
     return response(
       502,
-      { error: 'Send failed. Try again later or mail info@arkastro.be.' },
-      cors
+      { error: 'Send failed. Try again later or mail info@arkastro.be.' }
     );
   }
 }
@@ -162,32 +162,8 @@ function isAllowedOrigin(origin) {
   return ALLOWED_ORIGINS.includes(origin);
 }
 
-function corsHeaders(origin) {
-  const allowed = isAllowedOrigin(origin) ? origin : ALLOWED_ORIGINS[0];
-  return {
-    'Access-Control-Allow-Origin': allowed,
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Max-Age': '86400',
-    Vary: 'Origin',
-  };
-}
-
-function corsHeadersForHealth(origin) {
-  // Health may be opened directly (no Origin) or fetched from the site
-  if (!origin) {
-    return {
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Access-Control-Max-Age': '86400',
-    };
-  }
-  return corsHeaders(origin);
-}
-
-function response(statusCode, body, cors) {
+function response(statusCode, body) {
   const headers = {
-    ...cors,
     'Content-Type': 'application/json; charset=utf-8',
   };
 

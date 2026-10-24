@@ -93,7 +93,7 @@ Other forms can reuse the same endpoint with their own subject/body.
 ## Troubleshooting
 
 1. **Health fails** (DNS error, 404, blank) → App Platform not deployed, wrong path, or CNAME for `mailer.arkastro.be` missing. Fix deploy/DNS first.
-2. **Form shows a network/CORS error** → Open DevTools → Network on submit. Typical causes: wrong URL, CORS blocked, or function down.
+2. **Form shows a network/CORS error** → Open DevTools → Network on submit. Typical causes: wrong URL, CORS blocked, or function down. If the response header is `Access-Control-Allow-Origin: *,https://arkastro.be` (or similar), the function or App Platform ingress is adding CORS on top of DO’s default `*`. Do **not** set `Access-Control-*` in the function or ingress `cors:` — keep a single layer (DO’s `*`) and rely on the server-side origin allowlist for auth.
 3. **HTTP 403 Forbidden** → Origin is not `https://arkastro.be` / `https://www.arkastro.be` (e.g. testing from `file://` or another host).
 4. **HTTP 500 Server misconfigured** → `RESEND_API_KEY` missing on the App Platform function.
 5. **HTTP 502 Send failed** → Resend rejected the send (unverified domain, bad `FROM_EMAIL`, invalid key). Check App Platform function logs and Resend dashboard.
