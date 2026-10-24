@@ -41,6 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (currentFile === 'sponsoraanvraag.html') {
     initSponsoraanvraagForm();
   }
+
+  if (currentFile === 'contact.html') {
+    initContactForm();
+  }
 });
 
 const BINGO_RELEASES_FALLBACK = 'https://github.com/Tseberechts/bingo/releases/latest';
@@ -271,6 +275,10 @@ function buildSponsoraanvraagHtml(data) {
 }
 
 function showSponsorStatus(el, type, message) {
+  showFormStatus(el, type, message);
+}
+
+function showFormStatus(el, type, message) {
   if (!el) return;
   el.classList.remove(
     'hidden',
@@ -288,4 +296,158 @@ function showSponsorStatus(el, type, message) {
   }
 
   el.textContent = message;
+}
+
+const CONTACT_ONDERWERP_LABELS = {
+  it: 'Digitaal Maatwerk & AI',
+  lab: 'Custom Lab (3D & laser)',
+  algemeen: 'Algemene vraag',
+  ander: 'Anders',
+};
+
+function initContactForm() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  const onderwerpSelect = document.getElementById('onderwerp');
+  const params = new URLSearchParams(window.location.search);
+  const pref = (params.get('onderwerp') || '').trim().toLowerCase();
+  if (onderwerpSelect && CONTACT_ONDERWERP_LABELS[pref]) {
+    onderwerpSelect.value = pref;
+  }
+
+  const statusEl = document.getElementById('form-status');
+  const submitBtn = document.getElementById('contact-submit');
+  const submitLabel = submitBtn?.querySelector('.submit-label');
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      showFormStatus(statusEl, 'error', 'Controleer de verplichte velden en probeer opnieuw.');
+      return;
+    }
+
+    const data = Object.fromEntries(new FormData(form).entries());
+    const apiUrl = (form.dataset.apiUrl || '').trim();
+
+    if (!apiUrl) {
+      showFormStatus(
+        statusEl,
+        'error',
+        'Het verzenden is nog niet geconfigureerd. Mail naar info@arkastro.be.'
+      );
+      return;
+    }
+
+    if (submitBtn) submitBtn.disabled = true;
+    if (submitLabel) submitLabel.textContent = 'Bezig met versturen…';
+    showFormStatus(statusEl, 'pending', 'Je bericht wordt verstuurd…');
+
+    const onderwerpKey = String(data.onderwerp || '').trim();
+    const onderwerpLabel = CONTACT_ONDERWERP_LABELS[onderwerpKey] || onderwerpKey || 'Contact';
+    const naam = String(data.naam || '').trim();
+
+    const payload = {
+      subject: `Contact — ${onderwerpLabel}${naam ? ` (${naam})` : ''}`,
+      text: buildContactText(data, onderwerpLabel),
+      html: buildContactHtml(data, onderwerpLabel),
+      replyTo: String(data.email || '').trim(),
+      tag: 'contact',
+      website: String(data.website || '').trim(),
+    };
+
+    try {
+      const res = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        throw new Error(result.error || `Versturen mislukt (HTTP ${res.status}).`);
+      }
+
+      if (!result.ok) {
+        throw new Error(result.error || 'Versturen mislukt.');
+      }
+
+      form.reset();
+      if (onderwerpSelect && CONTACT_ONDERWERP_LABELS[pref]) {
+        onderwerpSelect.value = pref;
+      }
+
+      const ref = result.id ? ` Referentie: ${result.id}` : '';
+      showFormStatus(
+        statusEl,
+        result.id ? 'success' : 'pending',
+        result.id
+          ? `Bedankt! Je bericht is verstuurd.${ref}`
+          : 'Bedankt! Je bericht lijkt verstuurd, maar er kwam geen referentie terug. Controleer of de mailer correct is geconfigureerd.'
+      );
+    } catch (err) {
+      const message = err?.message || 'Versturen mislukt. Probeer later opnieuw of mail naar info@arkastro.be.';
+      const isNetwork = err instanceof TypeError;
+      showFormStatus(
+        statusEl,
+        'error',
+        isNetwork
+          ? 'Geen verbinding met de mailer. Controleer of mailer.arkastro.be bereikbaar is, of mail naar info@arkastro.be.'
+          : message
+      );
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+      if (submitLabel) submitLabel.textContent = 'Verstuur bericht';
+    }
+  });
+}
+
+function buildContactText(data, onderwerpLabel) {
+  const line = (label, value) => {
+    const text = String(value ?? '').trim();
+    return `${label}: ${text || '—'}`;
+  };
+
+  return [
+    'Nieuw contactbericht via arkastro.be',
+    '',
+    line('Naam', data.naam),
+    line('E-mail', data.email),
+    line('Telefoon', data.telefoon),
+    line('Onderwerp', onderwerpLabel),
+    '',
+    'Bericht:',
+    String(data.bericht || '').trim() || '—',
+  ].join('\n');
+}
+
+function buildContactHtml(data, onderwerpLabel) {
+  const esc = (value) =>
+    String(value ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+
+  const row = (label, value) => {
+    const text = String(value ?? '').trim() || '—';
+    return `<tr><td style="padding:6px 12px 6px 0;vertical-align:top;font-weight:700;color:#001F3F;">${esc(label)}</td><td style="padding:6px 0;color:#333;">${esc(text).replace(/\n/g, '<br>')}</td></tr>`;
+  };
+
+  return `
+    <div style="font-family:Montserrat,Arial,sans-serif;font-size:14px;line-height:1.5;color:#333;">
+      <p style="margin:0 0 16px;">Nieuw contactbericht via <strong>arkastro.be</strong></p>
+      <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
+        ${row('Naam', data.naam)}
+        ${row('E-mail', data.email)}
+        ${row('Telefoon', data.telefoon)}
+        ${row('Onderwerp', onderwerpLabel)}
+      </table>
+      <h2 style="font-size:16px;border-bottom:2px solid #D4AF37;padding-bottom:6px;">Bericht</h2>
+      <p style="white-space:pre-wrap;margin:12px 0 0;">${esc(data.bericht).replace(/\n/g, '<br>')}</p>
+    </div>
+  `.trim();
 }
