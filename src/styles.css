@@ -1,14 +1,18 @@
+@import "tailwindcss";
+
+@source "../*.html";
+
+@theme {
+  --color-marine: #001F3F;
+  --color-gold: #D4AF37;
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: #F4F4F4;
   color: #001F3F;
   scroll-behavior: smooth;
 }
-
-.bg-marine { background-color: #001F3F; }
-.text-gold { color: #D4AF37; }
-.bg-gold { background-color: #D4AF37; }
-.border-gold { border-color: #D4AF37; }
 
 /* Gold gradient effect for that "metallic" shine */
 .gold-gradient {
