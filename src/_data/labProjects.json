@@ -43,5 +43,23 @@
         "alt": "Kerstbal achterzijde met sneeuwvlok en Putte-logo"
       }
     ]
+  },
+  {
+    "slug": "keychain-putte",
+    "layout": "compact",
+    "title": "Sleutelhanger #2580Putte",
+    "blurb": "3D-geprinte sleutelhanger met #2580Putte in de gemeente-kleuren. Op bestelling via Contact.",
+    "price": {
+      "amount": 1,
+      "currency": "EUR",
+      "unit": "stuk"
+    },
+    "purchase": true,
+    "images": [
+      {
+        "src": "keychain_putte/keychain-putte.webp",
+        "alt": "3D-geprinte sleutelhanger #2580Putte in blauw en geel"
+      }
+    ]
   }
 ]
