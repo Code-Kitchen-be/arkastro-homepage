@@ -175,36 +175,23 @@ activeNav: lab
                 </p>
             </div>
 
-            <div class="card p-10 rounded-3xl border-t-8 border-gold">
-                <div class="grid md:grid-cols-2 gap-10 items-center">
-                    <div class="order-2 md:order-1">
-                        <div class="text-sm font-bold uppercase tracking-widest text-gold mb-3">Trophies • 3D + Laser</div>
-                        <h3 class="text-2xl font-bold mb-3">Voetbalkamp trofeeën voor kids</h3>
-                        <p class="text-gray-600 leading-relaxed mb-8">
-                            Voor een voetbalkamp maakten we een reeks trofeeën op basis van het kamp-logo. Het logo werd gelasercut en gegraveerd, gemonteerd op een 3D-geprinte voet met een ingewerkte, gelasercutte naamplaat.
-                        </p>
-                        <ul class="space-y-3 text-sm text-gray-700 font-medium">
-                            <li class="flex items-start">
-                                <img src="./assets/ARKASTRO_LOGO-mini.svg" alt="ArkAstro Bullet" class="w-4 h-4 mr-3 mt-1 flex-shrink-0" />
-                                <div class="leading-tight">
-                                    <div class="font-bold text-marine">Lasercutting & gravure</div>
-                                    <div class="text-gray-500 font-normal">Logo in hout met scherpe details.</div>
-                                </div>
-                            </li>
-                            <li class="flex items-start">
-                                <img src="./assets/ARKASTRO_LOGO-mini.svg" alt="ArkAstro Bullet" class="w-4 h-4 mr-3 mt-1 flex-shrink-0" />
-                                <div class="leading-tight">
-                                    <div class="font-bold text-marine">3D-geprinte basis</div>
-                                    <div class="text-gray-500 font-normal">Stabiel ontwerp met perfecte passing.</div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+            <div class="space-y-8 mb-12">
+                {% set featuredIndex = 0 %}
+                {% for project in labProjects %}
+                    {% if project.layout == "featured" %}
+                        {% set reverse = featuredIndex % 2 == 1 %}
+                        {% include "lab-project-featured.njk" %}
+                        {% set featuredIndex = featuredIndex + 1 %}
+                    {% endif %}
+                {% endfor %}
+            </div>
 
-                    <div class="order-1 md:order-2">
-                        <img src="./assets/la_croqueta_2026.jpg" alt="Trofeeën voor een voetbalkamp: gelasercut en gegraveerd logo op een 3D-geprinte basis met naamplaat." class="w-full h-72 md:h-[420px] object-cover rounded-2xl shadow-inner">
-                    </div>
-                </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {% for project in labProjects %}
+                    {% if project.layout != "featured" %}
+                        {% include "lab-project-compact.njk" %}
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
     </section>

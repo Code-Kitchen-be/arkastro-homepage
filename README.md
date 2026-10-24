@@ -11,7 +11,9 @@ Static site for [arkastro.be](https://arkastro.be), built with [Eleventy](https:
 | [`src/_includes/`](src/_includes/) | Shared `nav`, `footer`, `head` |
 | [`src/styles.css`](src/styles.css) | Tailwind source + brand styles |
 | [`main.js`](main.js) | Client JS (forms, bingo downloads) |
+| [`src/_data/labProjects.json`](src/_data/labProjects.json) | Custom Lab portfolio entries |
 | [`mailer/`](mailer/) | DigitalOcean mailer (separate deploy) |
+| [`docs/lab-media.md`](docs/lab-media.md) | Lab photos on DigitalOcean Spaces |
 
 ## Development
 
@@ -35,6 +37,15 @@ Output goes to `_site/` (gitignored). Do not commit `styles.css` — it is gener
 Push to `main` runs [`.github/workflows/pages.yml`](.github/workflows/pages.yml): `npm run build`, then deploy `_site` to GitHub Pages.
 
 Pages source must be **GitHub Actions**. Custom domain is set via [`CNAME`](CNAME) (`arkastro.be`).
+
+## Custom Lab portfolio
+
+Projects are listed in [`src/_data/labProjects.json`](src/_data/labProjects.json):
+
+- **`compact`** (default) — one photo + short title/blurb in a grid  
+- **`featured`** — larger story card (e.g. trophies)
+
+Lab photos should be hosted on **DigitalOcean Spaces + CDN**. See [`docs/lab-media.md`](docs/lab-media.md) for the Space name, key layout, optimize → upload → JSON workflow.
 
 ## Mailer
 

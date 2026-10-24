@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "la-croqueta-2026",
+    "layout": "featured",
+    "eyebrow": "Trophies • 3D + Laser",
+    "title": "Voetbalkamp trofeeën voor kids",
+    "summary": "Voor een voetbalkamp maakten we een reeks trofeeën op basis van het kamp-logo. Het logo werd gelasercut en gegraveerd, gemonteerd op een 3D-geprinte voet met een ingewerkte, gelasercutte naamplaat.",
+    "bullets": [
+      {
+        "label": "Lasercutting & gravure",
+        "detail": "Logo in hout met scherpe details."
+      },
+      {
+        "label": "3D-geprinte basis",
+        "detail": "Stabiel ontwerp met perfecte passing."
+      }
+    ],
+    "images": [
+      {
+        "src": "la-croqueta-2026/hero.webp",
+        "alt": "Trofeeën voor een voetbalkamp: gelasercut en gegraveerd logo op een 3D-geprinte basis met naamplaat."
+      }
+    ]
+  },
+  {
+    "slug": "kerstbal",
+    "layout": "compact",
+    "title": "Kerstbal met custom logo",
+    "blurb": "Platte laser-cut kerstbal in hout met jouw logo. Meerdere ontwerpen beschikbaar — ideaal voor goodiebags of als relatiegeschenk. Op bestelling via Contact.",
+    "price": {
+      "amount": 1,
+      "currency": "EUR",
+      "unit": "stuk"
+    },
+    "purchase": true,
+    "images": [
+      {
+        "src": "kerstbal/PXL_20261012_213347456-optimized.webp",
+        "alt": "Kerstbal voorzijde met sneeuwvlok en custom power-logo"
+      },
+      {
+        "src": "kerstbal/PXL_20261012_213342875-optimized.webp",
+        "alt": "Kerstbal achterzijde met sneeuwvlok en Putte-logo"
+      }
+    ]
+  }
+]

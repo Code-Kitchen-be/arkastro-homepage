@@ -306,6 +306,7 @@ function showFormStatus(el, type, message) {
 const CONTACT_ONDERWERP_LABELS = {
   it: 'Digitaal Maatwerk & AI',
   lab: 'Custom Lab (3D & laser)',
+  bestelling: 'Bestelling lab-product',
   algemeen: 'Algemene vraag',
   ander: 'Anders',
 };
@@ -315,10 +316,28 @@ function initContactForm() {
   if (!form) return;
 
   const onderwerpSelect = document.getElementById('onderwerp');
+  const berichtEl = document.getElementById('bericht');
+  const productEl = document.getElementById('product');
   const params = new URLSearchParams(window.location.search);
   const pref = (params.get('onderwerp') || '').trim().toLowerCase();
+  const productSlug = (params.get('product') || '').trim();
+
   if (onderwerpSelect && CONTACT_ONDERWERP_LABELS[pref]) {
     onderwerpSelect.value = pref;
+  }
+
+  if (productEl && productSlug) {
+    productEl.value = productSlug;
+  }
+
+  if (berichtEl && productSlug && !berichtEl.value.trim()) {
+    berichtEl.value = [
+      `Ik wil graag bestellen: ${productSlug}`,
+      '',
+      'Aantal: ',
+      'Gewenst logo / ontwerp: ',
+      'Opmerkingen: ',
+    ].join('\n');
   }
 
   const statusEl = document.getElementById('form-status');
@@ -354,12 +373,14 @@ function initContactForm() {
     const onderwerpLabel = CONTACT_ONDERWERP_LABELS[onderwerpKey] || onderwerpKey || 'Contact';
     const naam = String(data.naam || '').trim();
 
+    const productSlug = String(data.product || '').trim();
+    const subjectProduct = productSlug ? ` — ${productSlug}` : '';
     const payload = {
-      subject: `Contact — ${onderwerpLabel}${naam ? ` (${naam})` : ''}`,
+      subject: `Contact — ${onderwerpLabel}${subjectProduct}${naam ? ` (${naam})` : ''}`,
       text: buildContactText(data, onderwerpLabel),
       html: buildContactHtml(data, onderwerpLabel),
       replyTo: String(data.email || '').trim(),
-      tag: 'contact',
+      tag: onderwerpKey === 'bestelling' ? 'bestelling' : 'contact',
       website: String(data.website || '').trim(),
     };
 
@@ -423,6 +444,7 @@ function buildContactText(data, onderwerpLabel) {
     line('E-mail', data.email),
     line('Telefoon', data.telefoon),
     line('Onderwerp', onderwerpLabel),
+    line('Product', data.product),
     '',
     'Bericht:',
     String(data.bericht || '').trim() || '—',
@@ -450,6 +472,7 @@ function buildContactHtml(data, onderwerpLabel) {
         ${row('E-mail', data.email)}
         ${row('Telefoon', data.telefoon)}
         ${row('Onderwerp', onderwerpLabel)}
+        ${row('Product', data.product)}
       </table>
       <h2 style="font-size:16px;border-bottom:2px solid #D4AF37;padding-bottom:6px;">Bericht</h2>
       <p style="white-space:pre-wrap;margin:12px 0 0;">${esc(data.bericht).replace(/\n/g, '<br>')}</p>

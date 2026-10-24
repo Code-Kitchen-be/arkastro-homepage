@@ -1,0 +1,72 @@
+{% set images = project.images if project.images else ([project.image] if project.image else []) %}
+{% set mainImage = images[0] %}
+<article class="card p-10 rounded-3xl border-t-8 border-gold">
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div class="order-2 {% if reverse %}md:order-2{% else %}md:order-1{% endif %}">
+            {% if project.eyebrow %}
+            <div class="text-sm font-bold uppercase tracking-widest text-gold mb-3">{{ project.eyebrow }}</div>
+            {% endif %}
+            <h3 class="text-2xl font-bold mb-3">{{ project.title }}</h3>
+            {% if project.summary %}
+            <p class="text-gray-600 leading-relaxed {% if project.bullets and project.bullets.length %}mb-8{% else %}mb-4{% endif %}">
+                {{ project.summary }}
+            </p>
+            {% endif %}
+            {% if project.bullets and project.bullets.length %}
+            <ul class="space-y-3 text-sm text-gray-700 font-medium {% if project.price or project.purchase %}mb-8{% endif %}">
+                {% for bullet in project.bullets %}
+                <li class="flex items-start">
+                    <img src="./assets/ARKASTRO_LOGO-mini.svg" alt="" class="w-4 h-4 mr-3 mt-1 flex-shrink-0" />
+                    <div class="leading-tight">
+                        <div class="font-bold text-marine">{{ bullet.label }}</div>
+                        {% if bullet.detail %}
+                        <div class="text-gray-500 font-normal">{{ bullet.detail }}</div>
+                        {% endif %}
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% if project.price %}
+            <p class="text-marine font-bold mb-4">
+                €&nbsp;{{ project.price.amount }}{% if project.price.unit %}&nbsp;/&nbsp;{{ project.price.unit }}{% endif %}
+                {% if project.purchase %}
+                <span class="font-normal text-gray-500 text-sm"> — op bestelling via Contact</span>
+                {% endif %}
+            </p>
+            {% endif %}
+            {% if project.purchase %}
+            <a href="contact.html?onderwerp=bestelling&amp;product={{ project.slug }}"
+               class="inline-flex items-center justify-center bg-marine text-white font-bold text-xs uppercase tracking-widest px-5 py-3 rounded-full hover:bg-marine/90 transition-colors">
+                Bestel via Contact
+            </a>
+            {% endif %}
+        </div>
+        <div class="order-1 {% if reverse %}md:order-1{% else %}md:order-2{% endif %} space-y-3">
+            {% if mainImage %}
+            <img
+                src="{{ media.labSpacesBase }}{{ mainImage.src }}"
+                alt="{{ mainImage.alt or project.title }}"
+                class="w-full h-72 md:h-[420px] object-cover rounded-2xl shadow-inner"
+                loading="lazy"
+                decoding="async"
+            >
+            {% endif %}
+            {% if images.length > 1 %}
+            <div class="grid grid-cols-2 gap-3">
+                {% for img in images %}
+                    {% if not loop.first %}
+                    <img
+                        src="{{ media.labSpacesBase }}{{ img.src }}"
+                        alt="{{ img.alt or project.title }}"
+                        class="w-full h-28 md:h-36 object-cover rounded-xl"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</article>

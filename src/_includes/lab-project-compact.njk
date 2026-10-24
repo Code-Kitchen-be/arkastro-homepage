@@ -1,0 +1,50 @@
+{% set images = project.images if project.images else ([project.image] if project.image else []) %}
+{% set mainImage = images[0] %}
+{% set imageCount = images | length %}
+<article class="card overflow-hidden rounded-3xl border-t-8 border-gold h-full flex flex-col">
+    {% if imageCount > 1 %}
+    <div class="grid grid-cols-2 gap-1 bg-gray-100">
+        {% for img in images %}
+        <div class="aspect-[4/3] overflow-hidden">
+            <img
+                src="{{ media.labSpacesBase }}{{ img.src }}"
+                alt="{{ img.alt or project.title }}"
+                class="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+            >
+        </div>
+        {% endfor %}
+    </div>
+    {% elif mainImage %}
+    <div class="aspect-[4/3] overflow-hidden bg-gray-100">
+        <img
+            src="{{ media.labSpacesBase }}{{ mainImage.src }}"
+            alt="{{ mainImage.alt or project.title }}"
+            class="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+        >
+    </div>
+    {% endif %}
+    <div class="p-6 flex-1 flex flex-col">
+        <h3 class="text-lg font-bold text-marine mb-2">{{ project.title }}</h3>
+        {% if project.blurb %}
+        <p class="text-gray-600 text-sm leading-relaxed mb-4">{{ project.blurb }}</p>
+        {% endif %}
+        {% if project.price %}
+        <p class="text-marine font-bold text-sm mb-4">
+            €&nbsp;{{ project.price.amount }}{% if project.price.unit %}&nbsp;/&nbsp;{{ project.price.unit }}{% endif %}
+            {% if project.purchase %}
+            <span class="font-normal text-gray-500"> — op bestelling</span>
+            {% endif %}
+        </p>
+        {% endif %}
+        {% if project.purchase %}
+        <a href="contact.html?onderwerp=bestelling&amp;product={{ project.slug }}"
+           class="mt-auto inline-flex items-center justify-center bg-marine text-white font-bold text-xs uppercase tracking-widest px-4 py-2.5 rounded-full hover:bg-marine/90 transition-colors">
+            Bestel via Contact
+        </a>
+        {% endif %}
+    </div>
+</article>
