@@ -1,24 +1,41 @@
 [
   {
-    "slug": "la-croqueta-2026",
+    "slug": "totes-threshing-day",
     "layout": "featured",
-    "eyebrow": "Trophies • 3D + Laser",
-    "title": "Voetbalkamp trofeeën voor kids",
-    "summary": "Voor een voetbalkamp maakten we een reeks trofeeën op basis van het kamp-logo. Het logo werd gelasercut en gegraveerd, gemonteerd op een 3D-geprinte voet met een ingewerkte, gelasercutte naamplaat.",
+    "eyebrow": "Midnight opening • Cricut + printables",
+    "title": "Tote bags voor Threshing Day",
+    "summary": "Voor de midnight opening van Threshing Day maakten we custom tote bags: holographische draak en boekquotes met de Cricut, plus ArkAstro- en Standaard Boekhandel-logo’s in printable iron-on. In de tas: Fourth Wing-thema sleutelhangers en bladwijzers.",
     "bullets": [
       {
-        "label": "Lasercutting & gravure",
-        "detail": "Logo in hout met scherpe details."
+        "label": "Cricut vinyl",
+        "detail": "Holographische draak en quotes uit het boek."
       },
       {
-        "label": "3D-geprinte basis",
-        "detail": "Stabiel ontwerp met perfecte passing."
+        "label": "Printable iron-on",
+        "detail": "ArkAstro- en Standaard Boekhandel-logo’s."
+      },
+      {
+        "label": "Goodie-inhoud",
+        "detail": "Sleutelhangers en bladwijzers in Fourth Wing-stijl."
       }
     ],
+    "cta": {
+      "text": "Wil je ook een custom totebag voor jou persoonlijk, je bedrijf of event?",
+      "href": "contact.html?onderwerp=lab&product=totes-threshing-day",
+      "label": "Vraag het via Contact"
+    },
     "images": [
       {
-        "src": "la-croqueta-2026/hero.webp",
-        "alt": "Trofeeën voor een voetbalkamp: gelasercut en gegraveerd logo op een 3D-geprinte basis met naamplaat."
+        "src": "totes-threshing-day/PXL_20260928_135027245-optimized.webp",
+        "alt": "Custom tote bags met holographische draak, boekquotes en logo’s van ArkAstro en Standaard Boekhandel Putte"
+      },
+      {
+        "src": "totes-threshing-day/PXL_20260928_134641817-optimized.webp",
+        "alt": "Fourth Wing-thema sleutelhangers voor de Threshing Day tote bags"
+      },
+      {
+        "src": "totes-threshing-day/PXL_20260928_134812125-optimized.webp",
+        "alt": "3D-geprinte bladwijzers met draakmotief voor Threshing Day"
       }
     ]
   },
@@ -59,6 +76,48 @@
       {
         "src": "keychain_putte/keychain-putte.webp",
         "alt": "3D-geprinte sleutelhanger #2580Putte in blauw en geel"
+      }
+    ]
+  },
+  {
+    "slug": "felix",
+    "layout": "compact",
+    "title": "Felix — boekenstandaard",
+    "blurb": "Onze in-store drakenboeksteun. Bestel je eigen boekendraak via Contact.",
+    "price": {
+      "amount": 7,
+      "currency": "EUR",
+      "unit": "stuk"
+    },
+    "purchase": true,
+    "images": [
+      {
+        "src": "felix/Felix.webp",
+        "alt": "Felix, 3D-geprinte zwarte draak als boekenstandaard in de winkel"
+      }
+    ]
+  },
+  {
+    "slug": "la-croqueta-2026",
+    "layout": "featured",
+    "afterCompact": true,
+    "eyebrow": "Trophies • 3D + Laser",
+    "title": "Voetbalkamp trofeeën voor kids",
+    "summary": "Voor een voetbalkamp maakten we een reeks trofeeën op basis van het kamp-logo. Het logo werd gelasercut en gegraveerd, gemonteerd op een 3D-geprinte voet met een ingewerkte, gelasercutte naamplaat.",
+    "bullets": [
+      {
+        "label": "Lasercutting & gravure",
+        "detail": "Logo in hout met scherpe details."
+      },
+      {
+        "label": "3D-geprinte basis",
+        "detail": "Stabiel ontwerp met perfecte passing."
+      }
+    ],
+    "images": [
+      {
+        "src": "la-croqueta-2026/hero.webp",
+        "alt": "Trofeeën voor een voetbalkamp: gelasercut en gegraveerd logo op een 3D-geprinte basis met naamplaat."
       }
     ]
   }

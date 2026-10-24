@@ -176,20 +176,27 @@ activeNav: lab
             </div>
 
             <div class="space-y-8 mb-12">
-                {% set featuredIndex = 0 %}
                 {% for project in labProjects %}
-                    {% if project.layout == "featured" %}
-                        {% set reverse = featuredIndex % 2 == 1 %}
+                    {% if project.layout == "featured" and not project.afterCompact %}
+                        {% set reverse = loop.index0 % 2 == 1 %}
                         {% include "lab-project-featured.njk" %}
-                        {% set featuredIndex = featuredIndex + 1 %}
                     {% endif %}
                 {% endfor %}
             </div>
 
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                 {% for project in labProjects %}
                     {% if project.layout != "featured" %}
                         {% include "lab-project-compact.njk" %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="space-y-8">
+                {% for project in labProjects %}
+                    {% if project.layout == "featured" and project.afterCompact %}
+                        {% set reverse = true %}
+                        {% include "lab-project-featured.njk" %}
                     {% endif %}
                 {% endfor %}
             </div>

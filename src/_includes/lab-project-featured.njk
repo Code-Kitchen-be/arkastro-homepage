@@ -13,7 +13,7 @@
             </p>
             {% endif %}
             {% if project.bullets and project.bullets.length %}
-            <ul class="space-y-3 text-sm text-gray-700 font-medium {% if project.price or project.purchase %}mb-8{% endif %}">
+            <ul class="space-y-3 text-sm text-gray-700 font-medium {% if project.price or project.purchase or project.cta %}mb-8{% endif %}">
                 {% for bullet in project.bullets %}
                 <li class="flex items-start">
                     <img src="./assets/ARKASTRO_LOGO-mini.svg" alt="" class="w-4 h-4 mr-3 mt-1 flex-shrink-0" />
@@ -35,7 +35,15 @@
                 {% endif %}
             </p>
             {% endif %}
-            {% if project.purchase %}
+            {% if project.cta %}
+            {% if project.cta.text %}
+            <p class="text-gray-600 leading-relaxed mb-4">{{ project.cta.text }}</p>
+            {% endif %}
+            <a href="{{ project.cta.href }}"
+               class="inline-flex items-center justify-center bg-marine text-white font-bold text-xs uppercase tracking-widest px-5 py-3 rounded-full hover:bg-marine/90 transition-colors">
+                {{ project.cta.label or "Contacteer ons" }}
+            </a>
+            {% elif project.purchase %}
             <a href="contact.html?onderwerp=bestelling&amp;product={{ project.slug }}"
                class="inline-flex items-center justify-center bg-marine text-white font-bold text-xs uppercase tracking-widest px-5 py-3 rounded-full hover:bg-marine/90 transition-colors">
                 Bestel via Contact

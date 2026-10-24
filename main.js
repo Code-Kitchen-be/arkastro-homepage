@@ -331,13 +331,23 @@ function initContactForm() {
   }
 
   if (berichtEl && productSlug && !berichtEl.value.trim()) {
-    berichtEl.value = [
-      `Ik wil graag bestellen: ${productSlug}`,
-      '',
-      'Aantal: ',
-      'Gewenst logo / ontwerp: ',
-      'Opmerkingen: ',
-    ].join('\n');
+    if (pref === 'bestelling') {
+      berichtEl.value = [
+        `Ik wil graag bestellen: ${productSlug}`,
+        '',
+        'Aantal: ',
+        'Gewenst logo / ontwerp: ',
+        'Opmerkingen: ',
+      ].join('\n');
+    } else {
+      berichtEl.value = [
+        `Ik heb interesse in: ${productSlug}`,
+        '',
+        'Voor: (persoonlijk / bedrijf / event)',
+        'Aantal / timing: ',
+        'Idee of wensen: ',
+      ].join('\n');
+    }
   }
 
   const statusEl = document.getElementById('form-status');
