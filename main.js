@@ -138,6 +138,10 @@ function initSponsoraanvraagForm() {
       const result = await res.json().catch(() => ({}));
 
       if (!res.ok) {
+        throw new Error(result.error || `Versturen mislukt (HTTP ${res.status}).`);
+      }
+
+      if (!result.ok) {
         throw new Error(result.error || 'Versturen mislukt.');
       }
 
@@ -147,16 +151,25 @@ function initSponsoraanvraagForm() {
         datumAanvraag.value = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
       }
 
+      const ref = result.id ? ` Referentie: ${result.id}` : '';
+      const successMsg = result.id
+        ? `Bedankt! Je sponsoraanvraag is verstuurd.${ref}`
+        : 'Bedankt! Je sponsoraanvraag lijkt verstuurd, maar er kwam geen referentie terug. Controleer of de mailer correct is geconfigureerd.';
+
       showSponsorStatus(
         statusEl,
-        'success',
-        'Bedankt! Je sponsoraanvraag is verstuurd. We nemen zo snel mogelijk contact op.'
+        result.id ? 'success' : 'pending',
+        successMsg
       );
     } catch (err) {
+      const message = err?.message || 'Versturen mislukt. Probeer later opnieuw of mail naar info@arkastro.be.';
+      const isNetwork = err instanceof TypeError;
       showSponsorStatus(
         statusEl,
         'error',
-        err?.message || 'Versturen mislukt. Probeer later opnieuw of mail naar info@arkastro.be.'
+        isNetwork
+          ? 'Geen verbinding met de mailer. Controleer of mailer.arkastro.be bereikbaar is, of mail naar info@arkastro.be.'
+          : message
       );
     } finally {
       if (submitBtn) submitBtn.disabled = false;

@@ -27,6 +27,15 @@ async function main(event = {}) {
     return response(204, '', cors);
   }
 
+  // Public health check — open in a browser to verify deploy/routing
+  if (method === 'GET') {
+    return response(200, {
+      ok: true,
+      service: 'arkastro-mailer',
+      time: new Date().toISOString(),
+    }, corsHeadersForHealth(origin));
+  }
+
   if (method !== 'POST') {
     return response(405, { error: 'Method not allowed' }, cors);
   }
@@ -157,11 +166,23 @@ function corsHeaders(origin) {
   const allowed = isAllowedOrigin(origin) ? origin : ALLOWED_ORIGINS[0];
   return {
     'Access-Control-Allow-Origin': allowed,
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Max-Age': '86400',
     Vary: 'Origin',
   };
+}
+
+function corsHeadersForHealth(origin) {
+  // Health may be opened directly (no Origin) or fetched from the site
+  if (!origin) {
+    return {
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Max-Age': '86400',
+    };
+  }
+  return corsHeaders(origin);
 }
 
 function response(statusCode, body, cors) {

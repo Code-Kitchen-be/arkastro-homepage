@@ -4,6 +4,20 @@ General HTTP mailer for forms on [arkastro.be](https://arkastro.be). The site st
 
 ## Endpoint
 
+### Health check (is the function running?)
+
+Open in a browser:
+
+`GET https://mailer.arkastro.be/mail/send`
+
+Expected response:
+
+```json
+{ "ok": true, "service": "arkastro-mailer", "time": "2026-…" }
+```
+
+### Send mail
+
 `POST https://mailer.arkastro.be/mail/send`
 
 JSON body:
@@ -72,4 +86,15 @@ Local namespace URLs are for testing only; production uses `mailer.arkastro.be`.
 
 [`sponsoraanvraag.html`](../sponsoraanvraag.html) posts to this endpoint via `data-api-url`. [`main.js`](../main.js) builds subject/text/html and sends `{ subject, text, html, replyTo, tag, website }`.
 
+On success the form shows a green banner with `Referentie: <resend-id>` — that id is proof Resend accepted the message.
+
 Other forms can reuse the same endpoint with their own subject/body.
+
+## Troubleshooting
+
+1. **Health fails** (DNS error, 404, blank) → App Platform not deployed, wrong path, or CNAME for `mailer.arkastro.be` missing. Fix deploy/DNS first.
+2. **Form shows a network/CORS error** → Open DevTools → Network on submit. Typical causes: wrong URL, CORS blocked, or function down.
+3. **HTTP 403 Forbidden** → Origin is not `https://arkastro.be` / `https://www.arkastro.be` (e.g. testing from `file://` or another host).
+4. **HTTP 500 Server misconfigured** → `RESEND_API_KEY` missing on the App Platform function.
+5. **HTTP 502 Send failed** → Resend rejected the send (unverified domain, bad `FROM_EMAIL`, invalid key). Check App Platform function logs and Resend dashboard.
+6. **Form succeeds with a referentie, but no inbox mail** → Look up that id in [Resend → Emails](https://resend.com/emails). Check spam, confirm `TO_EMAIL` env, and that the `FROM_EMAIL` domain is verified in Resend.
