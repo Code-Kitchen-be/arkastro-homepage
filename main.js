@@ -56,18 +56,19 @@ async function resolveBingoDownloads() {
     const release = await res.json();
     const assets = Array.isArray(release.assets) ? release.assets : [];
 
+    // electron-builder names vary: "Bingo Setup 1.3.0.exe" or "Bingo.Setup.1.0.0.exe"
     const winAsset = assets.find((a) =>
-      /Bingo[.\-]Setup[.\-].*\.exe$/i.test(a.name) && !/\.blockmap$/i.test(a.name)
+      /^Bingo[\s._-]+Setup[\s._-]+.+\.exe$/i.test(a.name) && !/\.blockmap$/i.test(a.name)
     );
     const macAsset = assets.find((a) =>
-      /Bingo-.*-arm64\.dmg$/i.test(a.name) && !/\.blockmap$/i.test(a.name)
+      /^Bingo-.+-arm64\.dmg$/i.test(a.name) && !/\.blockmap$/i.test(a.name)
     );
 
-    if (winLink && winAsset?.browser_download_url) {
-      winLink.href = winAsset.browser_download_url;
+    if (winLink) {
+      winLink.href = winAsset?.browser_download_url || BINGO_RELEASES_FALLBACK;
     }
-    if (macLink && macAsset?.browser_download_url) {
-      macLink.href = macAsset.browser_download_url;
+    if (macLink) {
+      macLink.href = macAsset?.browser_download_url || BINGO_RELEASES_FALLBACK;
     }
   } catch {
     if (winLink) winLink.href = BINGO_RELEASES_FALLBACK;
