@@ -89,15 +89,6 @@ function initSponsoraanvraagForm() {
   const form = document.getElementById('sponsoraanvraag-form');
   if (!form) return;
 
-  const datumAanvraag = document.getElementById('datum-aanvraag');
-  if (datumAanvraag && !datumAanvraag.value) {
-    const today = new Date();
-    const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2, '0');
-    const dd = String(today.getDate()).padStart(2, '0');
-    datumAanvraag.value = `${yyyy}-${mm}-${dd}`;
-  }
-
   const statusEl = document.getElementById('form-status');
   const submitBtn = document.getElementById('sponsor-submit');
   const submitLabel = submitBtn?.querySelector('.submit-label');
@@ -155,10 +146,6 @@ function initSponsoraanvraagForm() {
       }
 
       form.reset();
-      if (datumAanvraag) {
-        const today = new Date();
-        datumAanvraag.value = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-      }
 
       const ref = result.id ? ` Referentie: ${result.id}` : '';
       const successMsg = result.id
@@ -220,10 +207,6 @@ function buildSponsoraanvraagText(data) {
     '',
     '4. Tegenprestatie (visibiliteit)',
     line('Beschrijving', data.tegenprestatie),
-    '',
-    '5. Ondertekening',
-    line('Naam aanvrager', data.handtekening),
-    line('Datum aanvraag', data['datum-aanvraag']),
   ].join('\n');
 }
 
@@ -267,13 +250,8 @@ function buildSponsoraanvraagHtml(data) {
         ${row('Andere vragen', data['andere-vragen'])}
       </table>
       <h2 style="font-size:16px;border-bottom:2px solid #D4AF37;padding-bottom:6px;">4. Tegenprestatie</h2>
-      <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
-        ${row('Beschrijving', data.tegenprestatie)}
-      </table>
-      <h2 style="font-size:16px;border-bottom:2px solid #D4AF37;padding-bottom:6px;">5. Ondertekening</h2>
       <table style="width:100%;border-collapse:collapse;">
-        ${row('Naam', data.handtekening)}
-        ${row('Datum', data['datum-aanvraag'])}
+        ${row('Beschrijving', data.tegenprestatie)}
       </table>
     </div>
   `.trim();
