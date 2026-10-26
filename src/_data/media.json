@@ -1,3 +1,4 @@
 {
-  "labSpacesBase": "https://arkastro-bucket.ams3.cdn.digitaloceanspaces.com/homepage/lab/"
+  "labSpacesBase": "https://arkastro-bucket.ams3.cdn.digitaloceanspaces.com/homepage/lab/",
+  "sponsorImage": "https://arkastro-bucket.ams3.cdn.digitaloceanspaces.com/homepage/Sponsoring.png"
 }

@@ -155,7 +155,8 @@ function initSponsoraanvraagForm() {
       showSponsorStatus(
         statusEl,
         result.id ? 'success' : 'pending',
-        successMsg
+        successMsg,
+        { includeSponsorDownload: true }
       );
     } catch (err) {
       const message = err?.message || 'Versturen mislukt. Probeer later opnieuw of mail naar info@arkastro.be.';
@@ -257,11 +258,14 @@ function buildSponsoraanvraagHtml(data) {
   `.trim();
 }
 
-function showSponsorStatus(el, type, message) {
-  showFormStatus(el, type, message);
+const SPONSOR_IMAGE_URL =
+  'https://arkastro-bucket.ams3.cdn.digitaloceanspaces.com/homepage/Sponsoring.png';
+
+function showSponsorStatus(el, type, message, options) {
+  showFormStatus(el, type, message, options);
 }
 
-function showFormStatus(el, type, message) {
+function showFormStatus(el, type, message, options) {
   if (!el) return;
   el.classList.remove(
     'hidden',
@@ -278,7 +282,30 @@ function showFormStatus(el, type, message) {
     el.classList.add('bg-amber-50', 'text-amber-900');
   }
 
-  el.textContent = message;
+  el.replaceChildren();
+
+  const messageEl = document.createElement('p');
+  messageEl.textContent = message;
+  el.appendChild(messageEl);
+
+  if (options?.includeSponsorDownload) {
+    const note = document.createElement('p');
+    note.className = 'mt-3 font-normal opacity-90';
+    note.textContent =
+      'Gebruik onze officiële sponsorafbeelding in de communicatie van je evenement.';
+
+    const link = document.createElement('a');
+    link.href = SPONSOR_IMAGE_URL;
+    link.download = 'SBPutte-Sponsoring.png';
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.className =
+      'mt-2 inline-flex items-center font-bold underline underline-offset-2 hover:opacity-80';
+    link.textContent = 'Download sponsorafbeelding';
+
+    el.appendChild(note);
+    el.appendChild(link);
+  }
 }
 
 const CONTACT_ONDERWERP_LABELS = {
