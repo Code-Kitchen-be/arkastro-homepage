@@ -13,7 +13,7 @@ activeNav: lab
         <div class="container mx-auto relative z-10">
             <h1 class="text-5xl md:text-6xl font-bold mb-6 pb-1 gold-gradient leading-[1.1]">The Custom Lab</h1>
             <p class="text-lg md:text-2xl max-w-3xl mx-auto mb-10 text-gray-200 leading-relaxed">
-                Van digitaal ontwerp naar tastbare realiteit. Wij ontwerpen, 3D-printen en lasercutten op maat.
+                Digitaal wordt tastbaar — en wat tastbaar is, leeft opnieuw als ontwerp. Dat is waar we in het lab van dromen en creëren.
             </p>
             <a href="#portfolio" class="bg-gold text-marine font-bold py-4 px-10 rounded-full hover:bg-gold/90 transition duration-300 shadow-xl inline-flex items-center justify-center">
                 Bekijk portfolio
@@ -28,7 +28,7 @@ activeNav: lab
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4 underline decoration-gold decoration-4 underline-offset-8">Onze Services</h2>
                 <p class="text-gray-600 max-w-3xl mx-auto">
-                    Eén traject, één partner. Van concept en ontwerp tot productie en afwerking in ons lab.
+                    Gefascineerd door de brug tussen digitaal en tastbaar: laser, 3D-print en Cricut. Eén traject — van ontwerp tot afwerking.
                 </p>
             </div>
 
@@ -160,7 +160,7 @@ activeNav: lab
             <div class="max-w-4xl mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Uw ontwerp laten realiseren?</h2>
                 <p class="text-marine/90 mb-10 leading-relaxed">
-                    Heeft u een concept dat u wilt laten 3D-printen, lasercutten of ontwerpen? Wij staan klaar om van uw idee een tastbaar resultaat te maken. Stuur ons een bericht met uw wensen.
+                    Heeft u een droom of concept dat u wilt laten 3D-printen, lasercutten of ontwerpen? Wij creëren er een tastbaar resultaat van. Stuur ons een bericht met uw wensen.
                 </p>
                 <a href="contact.html?onderwerp=lab" class="bg-marine text-white font-bold py-4 px-10 rounded-full hover:bg-marine/90 transition duration-300 shadow-xl inline-flex items-center justify-center">
                     Stuur ons uw aanvraag
@@ -175,7 +175,7 @@ activeNav: lab
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4 underline decoration-gold decoration-4 underline-offset-8">Portfolio</h2>
                 <p class="text-gray-600 max-w-3xl mx-auto">
-                    Een selectie van projecten uit ons lab.
+                    Gedroomd en gecreëerd in ons lab — bestelbaar op maat, met onze signatuur.
                 </p>
                 <p class="text-gray-500 text-sm mt-3">Alle prijzen zijn exclusief BTW.</p>
             </div>
@@ -197,7 +197,7 @@ activeNav: lab
                 {% endfor %}
             </div>
 
-            <div class="space-y-8">
+            <div class="space-y-8 mb-12">
                 {% for project in labProjects %}
                     {% if project.layout == "featured" and project.afterCompact %}
                         {% set reverse = true %}
@@ -205,15 +205,10 @@ activeNav: lab
                     {% endif %}
                 {% endfor %}
             </div>
-        </div>
-    </section>
 
-    <!-- Binnenkort -->
-    <section class="py-24 container mx-auto px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-4 underline decoration-gold decoration-4 underline-offset-8">Binnenkort</h2>
-            <p class="text-gray-600 text-lg">
-                Binnenkort: Onze eigen webshop met exclusieve (boekgerelateerde) 3D-creaties en gadgets.
+            <p class="flex items-center justify-center gap-2 text-sm text-gray-500 tracking-wide">
+                <img src="./assets/ARKASTRO_LOGO-mini.svg" alt="" class="w-4 h-4" aria-hidden="true" />
+                <span>Gedroomd en Gecreëerd door <a href="index.html" class="text-marine font-medium hover:text-gold transition-colors">Arkastro.be</a></span>
             </p>
         </div>
     </section>
