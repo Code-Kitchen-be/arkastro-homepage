@@ -2,17 +2,25 @@
  * General mailer for arkastro.be — DigitalOcean Functions + Resend.
  *
  * POST https://mailer.arkastro.be/mail/send
- * Accepts: subject, text and/or html, replyTo?, tag?, website? (honeypot)
- * Sends only to TO_EMAIL (fixed). Origin must be arkastro.be / www.
+ *
+ * Browser forms (Origin arkastro.be / www / shop):
+ *   subject, text and/or html, replyTo?, tag?, website? (honeypot)
+ *   Always sends to TO_EMAIL.
+ *
+ * Server-to-server (header X-Mailer-Key = MAILER_INTERNAL_KEY):
+ *   same fields + optional `to` (customer confirmation / notify).
  *
  * Do not set Access-Control-* headers here: App Platform already injects
  * Access-Control-Allow-Origin: *. Adding our own concatenates into an
- * invalid value (e.g. *,https://arkastro.be) that browsers reject.
+ * invalid value that browsers reject.
  */
 
 const ALLOWED_ORIGINS = [
   'https://arkastro.be',
   'https://www.arkastro.be',
+  'https://shop.arkastro.be',
+  'http://localhost:8080',
+  'http://localhost:8000',
 ];
 
 const MAX_SUBJECT = 200;
@@ -24,12 +32,17 @@ async function main(event = {}) {
   const method = String(http.method || 'GET').toUpperCase();
   const headers = normalizeHeaders(http.headers || {});
   const origin = headers.origin || '';
+  const internalKey = process.env.MAILER_INTERNAL_KEY || '';
+  const providedKey = headers['x-mailer-key'] || '';
+  const isInternal =
+    Boolean(internalKey) &&
+    providedKey.length > 0 &&
+    timingSafeEqual(providedKey, internalKey);
 
   if (method === 'OPTIONS') {
     return response(204, '');
   }
 
-  // Public health check — open in a browser to verify deploy/routing
   if (method === 'GET') {
     return response(200, {
       ok: true,
@@ -42,7 +55,7 @@ async function main(event = {}) {
     return response(405, { error: 'Method not allowed' });
   }
 
-  if (!isAllowedOrigin(origin)) {
+  if (!isInternal && !isAllowedOrigin(origin)) {
     return response(403, { error: 'Forbidden' });
   }
 
@@ -54,7 +67,6 @@ async function main(event = {}) {
 
   const payload = extractPayload(event);
 
-  // Honeypot — bots fill this; humans leave it empty
   if (payload.website) {
     return response(200, { ok: true });
   }
@@ -64,6 +76,7 @@ async function main(event = {}) {
   const html = String(payload.html || '').trim().slice(0, MAX_BODY);
   const replyTo = String(payload.replyTo || '').trim().slice(0, 320);
   const tag = String(payload.tag || '').trim().slice(0, MAX_TAG);
+  const requestedTo = String(payload.to || '').trim().slice(0, 320);
 
   if (!subject) {
     return response(400, { error: 'subject is required' });
@@ -78,7 +91,15 @@ async function main(event = {}) {
   }
 
   const from = process.env.FROM_EMAIL || 'ArkAstro <noreply@arkastro.be>';
-  const to = process.env.TO_EMAIL || 'info@arkastro.be';
+  const defaultTo = process.env.TO_EMAIL || 'info@arkastro.be';
+
+  let to = defaultTo;
+  if (isInternal && requestedTo) {
+    if (!isValidEmail(requestedTo)) {
+      return response(400, { error: 'Invalid to email' });
+    }
+    to = requestedTo;
+  }
 
   const body = {
     from,
@@ -110,24 +131,21 @@ async function sendWithResend(apiKey, body) {
 
     if (!resendRes.ok) {
       console.error('Resend error', resendRes.status, resendBody);
-      return response(
-        502,
-        { error: 'Send failed. Try again later or mail info@arkastro.be.' }
-      );
+      return response(502, {
+        error: 'Send failed. Try again later or mail info@arkastro.be.',
+      });
     }
 
     return response(200, { ok: true, id: resendBody.id || null });
   } catch (err) {
     console.error('Resend request failed', err);
-    return response(
-      502,
-      { error: 'Send failed. Try again later or mail info@arkastro.be.' }
-    );
+    return response(502, {
+      error: 'Send failed. Try again later or mail info@arkastro.be.',
+    });
   }
 }
 
 function extractPayload(event) {
-  // DO web functions flatten JSON body onto event; also support nested body.
   if (event && typeof event.body === 'object' && event.body !== null) {
     return event.body;
   }
@@ -147,6 +165,7 @@ function extractPayload(event) {
     replyTo: event.replyTo,
     tag: event.tag,
     website: event.website,
+    to: event.to,
   };
 }
 
@@ -160,6 +179,17 @@ function normalizeHeaders(headers) {
 
 function isAllowedOrigin(origin) {
   return ALLOWED_ORIGINS.includes(origin);
+}
+
+function timingSafeEqual(a, b) {
+  if (typeof a !== 'string' || typeof b !== 'string' || a.length !== b.length) {
+    return false;
+  }
+  let mismatch = 0;
+  for (let i = 0; i < a.length; i++) {
+    mismatch |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  return mismatch === 0;
 }
 
 function response(statusCode, body) {

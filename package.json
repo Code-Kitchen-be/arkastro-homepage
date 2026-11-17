@@ -1,18 +1,24 @@
 {
-  "name": "arkastro-homepage",
+  "name": "arkastro",
   "private": true,
-  "scripts": {
-    "build:css": "tailwindcss -i ./src/styles.css -o ./styles.css --minify",
-    "watch:css": "tailwindcss -i ./src/styles.css -o ./styles.css --watch",
-    "build:site": "eleventy",
-    "build": "npm run build:css && npm run build:site",
-    "serve": "eleventy --serve",
-    "dev": "concurrently -k -n css,site -c yellow,cyan \"npm run watch:css\" \"npm run serve\""
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=26"
   },
-  "devDependencies": {
-    "@11ty/eleventy": "^3.1.2",
-    "@tailwindcss/cli": "^4.1.14",
-    "concurrently": "^10.0.6",
-    "tailwindcss": "^4.1.14"
+  "scripts": {
+    "dev:homepage": "npm run dev -w @arkastro/homepage",
+    "build:homepage": "npm run build -w @arkastro/homepage",
+    "dev:shop": "npm run dev -w @arkastro/shop",
+    "build:shop": "npm run build -w @arkastro/shop",
+    "dev:medusa": "npm run dev -w @arkastro/medusa",
+    "build:medusa": "npm run build -w @arkastro/medusa",
+    "seed:lab": "npm run seed -w @arkastro/medusa",
+    "build": "npm run build:homepage",
+    "db:up": "docker compose up -d postgres redis",
+    "db:down": "docker compose down"
   }
 }
+

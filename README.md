@@ -1,52 +1,53 @@
-# arkastro-homepage
+# ArkAstro monorepo
 
-Static site for [arkastro.be](https://arkastro.be), built with [Eleventy](https://www.11ty.dev/) + Tailwind CSS and deployed to GitHub Pages.
+Homepage ([arkastro.be](https://arkastro.be)), lab webshop, Medusa backend, and mailer — one repo for DigitalOcean App Platform.
 
 ## Structure
 
 | Path | Role |
 | --- | --- |
-| [`src/pages/`](src/pages/) | Page content (Nunjucks) |
-| [`src/_layouts/base.njk`](src/_layouts/base.njk) | Shared document shell |
-| [`src/_includes/`](src/_includes/) | Shared `nav`, `footer`, `head` |
-| [`src/styles.css`](src/styles.css) | Tailwind source + brand styles |
-| [`main.js`](main.js) | Client JS (forms, bingo downloads) |
-| [`src/_data/labProjects.json`](src/_data/labProjects.json) | Custom Lab portfolio entries |
-| [`mailer/`](mailer/) | DigitalOcean mailer (separate deploy) |
+| [`apps/homepage/`](apps/homepage/) | Static marketing site (Eleventy + Tailwind) |
+| [`apps/shop/`](apps/shop/) | Lab storefront (Next.js + Medusa) |
+| [`apps/medusa/`](apps/medusa/) | Medusa v2 API + Admin |
+| [`packages/brand/`](packages/brand/) | Shared brand tokens (marine/gold, Montserrat) |
+| [`mailer/`](mailer/) | DigitalOcean Functions mailer (Resend) |
 | [`docs/lab-media.md`](docs/lab-media.md) | Lab photos on DigitalOcean Spaces |
+| [`.do/app.yaml`](.do/app.yaml) | App Platform multi-component spec |
+
+**Runtime:** Node.js **26+** everywhere.
 
 ## Development
 
 ```bash
 npm install
-npm run dev
+npm run dev:homepage   # http://localhost:8080
+npm run dev:medusa     # API + Admin (needs Postgres/Redis)
+npm run dev:shop       # http://localhost:8000
 ```
 
-That watches Tailwind and serves the site (Eleventy). Open the local URL Eleventy prints (usually `http://localhost:8080`).
+Homepage build output: `apps/homepage/_site/` (gitignored). Do not commit generated `styles.css`.
 
-One-shot production build:
+## Domains (target)
 
-```bash
-npm run build
-```
+| Host | Component |
+| --- | --- |
+| `arkastro.be` | Homepage static |
+| `shop.arkastro.be` | Lab shop |
+| `api.arkastro.be` | Medusa API + Admin |
+| `mailer.arkastro.be` | Mailer function |
 
-Output goes to `_site/` (gitignored). Do not commit `styles.css` — it is generated.
+## Shop policy
 
-## Production
+- Catalog: Custom Lab only
+- Market: Belgium, EUR, Dutch UI
+- Prices: **inclusief BTW 21%**
+- Payments: Mollie
+- Email: via `mailer/`
 
-Push to `main` runs [`.github/workflows/pages.yml`](.github/workflows/pages.yml): `npm run build`, then deploy `_site` to GitHub Pages.
+## Homepage (GitHub Pages, interim)
 
-Pages source must be **GitHub Actions**. Custom domain is set via [`CNAME`](CNAME) (`arkastro.be`).
-
-## Custom Lab portfolio
-
-Projects are listed in [`src/_data/labProjects.json`](src/_data/labProjects.json):
-
-- **`compact`** (default) — one photo + short title/blurb in a grid  
-- **`featured`** — larger story card (e.g. trophies)
-
-Lab photos should be hosted on **DigitalOcean Spaces + CDN**. See [`docs/lab-media.md`](docs/lab-media.md) for the Space name, key layout, optimize → upload → JSON workflow.
+Until App Platform cutover, push to `main` still deploys the homepage via [`.github/workflows/pages.yml`](.github/workflows/pages.yml).
 
 ## Mailer
 
-Form submissions (contact, sponsoraanvraag) go through [`mailer/`](mailer/). See [`mailer/README.md`](mailer/README.md).
+See [`mailer/README.md`](mailer/README.md).

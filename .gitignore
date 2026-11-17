@@ -1,3 +1,11 @@
 node_modules/
-/styles.css
-/_site/
+**/styles.css
+**/_site/
+**/.env
+**/.env.local
+**/.medusa/
+**/dist/
+**/.next/
+**/coverage/
+.DS_Store
+*.log

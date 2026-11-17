@@ -1,8 +1,8 @@
 # Lab portfolio media (DigitalOcean Spaces)
 
-Lab project photos live on **DigitalOcean Spaces + CDN**, not in git. Site chrome (logos, heroes, icons) stays under [`assets/`](../assets/).
+Lab project photos live on **DigitalOcean Spaces + CDN**, not in git. Site chrome (logos, heroes, icons) stays under [`apps/homepage/assets/`](../apps/homepage/assets/).
 
-The CDN prefix is defined once in [`src/_data/media.json`](../src/_data/media.json) as `labSpacesBase`. Portfolio entries in [`labProjects.json`](../src/_data/labProjects.json) only store **relative** paths under that prefix.
+The CDN prefix is defined once in [`apps/homepage/src/_data/media.json`](../apps/homepage/src/_data/media.json) as `labSpacesBase`. Portfolio entries in [`labProjects.json`](../apps/homepage/src/_data/labProjects.json) only store **relative** paths under that prefix.
 
 ## Space conventions
 
@@ -30,7 +30,7 @@ Hosting on Spaces does not replace compression.
 ## Add a compact project
 
 1. Optimize photo(s) and upload under `homepage/lab/<slug>/` (public).
-2. Append an entry to [`labProjects.json`](../src/_data/labProjects.json):
+2. Append an entry to [`labProjects.json`](../apps/homepage/src/_data/labProjects.json):
 
 ```json
 {
@@ -48,7 +48,7 @@ Hosting on Spaces does not replace compression.
 ```
 
 - **`images`**: first = main photo; extra = thumbs (e.g. voor/achter).
-- **`price`** + **`purchase: true`**: shows € / stuk and a “Bestel via Contact” button (`?onderwerp=bestelling&product=<slug>`).
+- **`price`** + **`purchase: true`**: shows € / stuk and a “Bestel via Contact” button (`?onderwerp=bestelling&product=<slug>`). Shop SKUs use Medusa with **incl. BTW** prices instead.
 - Templates resolve URLs as `media.labSpacesBase` + each `images[].src`.
 
 3. Commit and push — CI rebuilds the site.
@@ -57,4 +57,4 @@ Omit `layout` or set `"layout": "compact"` for the small card. Use `"layout": "f
 
 ## Change the CDN host
 
-Edit [`src/_data/media.json`](../src/_data/media.json) only. Project entries stay the same as long as object keys under `homepage/lab/` are unchanged.
+Edit [`apps/homepage/src/_data/media.json`](../apps/homepage/src/_data/media.json) only. Project entries stay the same as long as object keys under `homepage/lab/` are unchanged.

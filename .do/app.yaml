@@ -1,22 +1,146 @@
-# DigitalOcean App Platform spec for the mailer.
-# Create the app from this repo (source directory: mailer/), then set RESEND_API_KEY
-# as an encrypted runtime secret in the dashboard. Update github.repo to your remote.
+# DigitalOcean App Platform — ArkAstro monorepo
+# Components: homepage (static), shop, medusa (+ worker), mailer
+# Set secrets in the dashboard: DATABASE_URL, REDIS_URL, JWT_SECRET,
+# COOKIE_SECRET, MOLLIE_API_KEY, RESEND_API_KEY, MAILER_INTERNAL_KEY, etc.
 #
-# Public endpoint after domain + DNS: https://mailer.arkastro.be/mail/send
+# Node 26 for all Node components. Connect github.repo when applying via doctl.
 
-name: arkastro-mailer
+name: arkastro
 region: ams
+
 domains:
-  - domain: mailer.arkastro.be
+  - domain: arkastro.be
     type: PRIMARY
-functions:
-  - name: mailer
-    source_dir: /mailer
-    # Uncomment and set your GitHub repo when applying this spec via doctl/API:
+  - domain: www.arkastro.be
+    type: ALIAS
+  - domain: shop.arkastro.be
+    type: ALIAS
+  - domain: api.arkastro.be
+    type: ALIAS
+  - domain: mailer.arkastro.be
+    type: ALIAS
+
+databases:
+  - name: medusa-db
+    engine: PG
+    version: "16"
+    production: true
+  - name: medusa-redis
+    engine: REDIS
+    version: "7"
+    production: true
+
+static_sites:
+  - name: homepage
     # github:
     #   repo: your-org/arkastro-homepage
     #   branch: main
     #   deploy_on_push: true
+    source_dir: /apps/homepage
+    build_command: cd ../.. && npm ci && npm run build:homepage
+    output_dir: /apps/homepage/_site
+    environment_slug: node-js
+    envs:
+      - key: NODE_VERSION
+        scope: BUILD_TIME
+        value: "26"
+
+services:
+  - name: medusa
+    source_dir: /
+    dockerfile_path: apps/medusa/Dockerfile
+    http_port: 9000
+    instance_count: 1
+    instance_size_slug: basic-xs
+    envs:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        scope: RUN_TIME
+        type: SECRET
+      - key: REDIS_URL
+        scope: RUN_TIME
+        type: SECRET
+      - key: JWT_SECRET
+        scope: RUN_TIME
+        type: SECRET
+      - key: COOKIE_SECRET
+        scope: RUN_TIME
+        type: SECRET
+      - key: STORE_CORS
+        value: "https://shop.arkastro.be"
+      - key: ADMIN_CORS
+        value: "https://api.arkastro.be"
+      - key: AUTH_CORS
+        value: "https://api.arkastro.be,https://shop.arkastro.be"
+      - key: MEDUSA_URL
+        value: "https://api.arkastro.be"
+      - key: MOLLIE_API_KEY
+        scope: RUN_TIME
+        type: SECRET
+      - key: MOLLIE_REDIRECT_URL
+        value: "https://shop.arkastro.be/be/order/confirmed"
+      - key: MAILER_URL
+        value: "https://mailer.arkastro.be/mail/send"
+      - key: MAILER_INTERNAL_KEY
+        scope: RUN_TIME
+        type: SECRET
+      - key: TO_EMAIL
+        value: "info@arkastro.be"
+      - key: FROM_EMAIL
+        value: "ArkAstro <noreply@arkastro.be>"
+
+  - name: medusa-worker
+    source_dir: /
+    dockerfile_path: apps/medusa/Dockerfile
+    http_port: 9000
+    instance_count: 1
+    instance_size_slug: basic-xs
+    envs:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        scope: RUN_TIME
+        type: SECRET
+      - key: REDIS_URL
+        scope: RUN_TIME
+        type: SECRET
+      - key: JWT_SECRET
+        scope: RUN_TIME
+        type: SECRET
+      - key: COOKIE_SECRET
+        scope: RUN_TIME
+        type: SECRET
+      - key: MEDUSA_URL
+        value: "https://api.arkastro.be"
+      - key: MAILER_URL
+        value: "https://mailer.arkastro.be/mail/send"
+      - key: MAILER_INTERNAL_KEY
+        scope: RUN_TIME
+        type: SECRET
+
+  - name: shop
+    source_dir: /
+    dockerfile_path: apps/shop/Dockerfile
+    http_port: 8000
+    instance_count: 1
+    instance_size_slug: basic-xs
+    envs:
+      - key: NODE_ENV
+        value: production
+      - key: MEDUSA_BACKEND_URL
+        value: "https://api.arkastro.be"
+      - key: NEXT_PUBLIC_BASE_URL
+        value: "https://shop.arkastro.be"
+      - key: NEXT_PUBLIC_DEFAULT_REGION
+        value: "be"
+      - key: NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
+        scope: RUN_TIME
+        type: SECRET
+
+functions:
+  - name: mailer
+    source_dir: /mailer
     envs:
       - key: RESEND_API_KEY
         scope: RUN_TIME
@@ -29,14 +153,36 @@ functions:
         scope: RUN_TIME
         type: GENERAL
         value: "info@arkastro.be"
+      - key: MAILER_INTERNAL_KEY
+        scope: RUN_TIME
+        type: SECRET
+
 ingress:
   rules:
     - match:
+        authority:
+          exact: shop.arkastro.be
+        path:
+          prefix: /
+      component:
+        name: shop
+    - match:
+        authority:
+          exact: api.arkastro.be
+        path:
+          prefix: /
+      component:
+        name: medusa
+    - match:
+        authority:
+          exact: mailer.arkastro.be
         path:
           prefix: /
       component:
         name: mailer
         preserve_path_prefix: true
-    # Do not set ingress cors: App Platform already injects
-    # Access-Control-Allow-Origin: *. Extra CORS concatenates into an
-    # invalid value (e.g. *,https://arkastro.be) that browsers reject.
+    - match:
+        path:
+          prefix: /
+      component:
+        name: homepage

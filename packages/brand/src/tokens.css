@@ -1,0 +1,23 @@
+/**
+ * ArkAstro brand tokens — shared by homepage (reference) and shop storefront.
+ */
+:root {
+  --arkastro-marine: #001f3f;
+  --arkastro-gold: #d4af37;
+  --arkastro-gold-light: #f5e050;
+  --arkastro-gold-dark: #b8860b;
+  --arkastro-bg: #f4f4f4;
+  --arkastro-font: "Montserrat", sans-serif;
+}
+
+.arkastro-gold-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--arkastro-gold) 0%,
+    var(--arkastro-gold-light) 50%,
+    var(--arkastro-gold-dark) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
