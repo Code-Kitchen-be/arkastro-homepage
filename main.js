@@ -12,7 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
     el.textContent = year;
   });
 
-  const currentFile = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  // Pretty URLs may omit ".html" (e.g. /sponsoraanvraag) — normalize so form init still runs.
+  const pathTail = (window.location.pathname.split('/').pop() || '').toLowerCase();
+  const currentFile = !pathTail || pathTail === '/'
+    ? 'index.html'
+    : pathTail.endsWith('.html')
+      ? pathTail
+      : `${pathTail}.html`;
   const currentHash = (window.location.hash || '').toLowerCase();
 
   document.querySelectorAll('a.nav-link').forEach((a) => {
@@ -30,7 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Compare normalized filename from href (supports "index.html#over-ons")
-    const hrefFile = href.split('#')[0].split('?')[0].toLowerCase();
+    const hrefRaw = href.split('#')[0].split('?')[0].toLowerCase();
+    const hrefFile = !hrefRaw
+      ? ''
+      : hrefRaw.endsWith('.html')
+        ? hrefRaw
+        : `${hrefRaw}.html`;
     if (hrefFile && hrefFile === currentFile) {
       a.setAttribute('aria-current', 'page');
     }
